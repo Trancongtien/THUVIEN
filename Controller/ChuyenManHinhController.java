@@ -65,14 +65,17 @@ public class ChuyenManHinhController extends JFrame {
 			case "QuanLySach":
 				node = new QuanLySach();
 				break;
-			case "QuanLyMuonTra":
-				node = new QuanLyMuonTra();
+			case "QuanLyMuon":
+				node = new QuanLyMuon();
 				break;
 			case"ThongKe":
 				node= new ThongKe();
 				break;
 			case"QuanLyKho":
 				node= new QuanLyKho();
+				break;
+			case"QuanLyTra":
+				node= new QuanLyTra();
 				break;
 			default:
 				break;

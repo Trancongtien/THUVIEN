@@ -33,13 +33,15 @@ public class MainFrame extends JFrame {
 	private JPanel pnQuanLySach;
 	private JPanel pnQuanLyKho;
 	private JPanel pnQuanLyDocGia;
-	private JPanel pnQuanLyMuonTra;
-	private JPanel pnThongKe;
+	private JPanel pnQuanLyMuon;
+	private JPanel pnQuanLyTra;
 	private JLabel lbTrangChu;
 	private JLabel lbQuanLySach;
 	private JLabel lbQuanLyKho;
 	private JLabel lbQuanLyDocGia;
-	private JLabel lbQuanLyMuonTra;
+	private JLabel lbQuanLyMuon;
+	private JLabel lbQuanLyTra;
+	private JPanel pnThongKe;
 	private JLabel lbThongKe;
 
 	public MainFrame() {
@@ -49,15 +51,15 @@ public class MainFrame extends JFrame {
 
 		this.getContentPane().add(pnRoot);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 808, 496);
+		setBounds(100, 100, 1200, 800);
 		pnRoot.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(pnRoot);
 		pnRoot.setLayout(new BorderLayout());
 
 		pnView = new JPanel();
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 808, 496);
+
+
 
 		pnMenu = new JPanel();
 		pnMenu.setBackground(Color.DARK_GRAY);
@@ -84,57 +86,76 @@ public class MainFrame extends JFrame {
 		pnQuanLyDocGia = new JPanel();
 		pnQuanLyDocGia.setBackground(Color.GREEN);
 
-		pnQuanLyMuonTra = new JPanel();
-		pnQuanLyMuonTra.setBackground(Color.GREEN);
+		pnQuanLyMuon = new JPanel();
+		pnQuanLyMuon.setBackground(Color.GREEN);
 
-		pnThongKe = new JPanel();
-		pnThongKe.setBackground(Color.GREEN);
+		pnQuanLyTra = new JPanel();
+		pnQuanLyTra.setBackground(Color.GREEN);
 
 		JButton btLogout = new JButton("Logout");
+		
+		pnThongKe = new JPanel();
+		pnThongKe.setBackground(Color.GREEN);
 		GroupLayout gl_pnMenu = new GroupLayout(pnMenu);
-		gl_pnMenu.setHorizontalGroup(gl_pnMenu.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-				.addGroup(gl_pnMenu.createSequentialGroup().addContainerGap().addComponent(btLohgin)
-						.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE).addComponent(btLogout)
-						.addContainerGap())
+		gl_pnMenu.setHorizontalGroup(
+			gl_pnMenu.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+				.addGroup(gl_pnMenu.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(btLohgin)
+					.addPreferredGap(ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+					.addComponent(btLogout)
+					.addContainerGap())
 				.addComponent(pnTrangChu, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 				.addComponent(pnQuanLySach, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 				.addComponent(pnQuanLyKho, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 				.addComponent(pnQuanLyDocGia, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-				.addComponent(pnQuanLyMuonTra, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-				.addComponent(pnThongKe, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE));
-		gl_pnMenu.setVerticalGroup(gl_pnMenu.createParallelGroup(Alignment.LEADING)
+				.addComponent(pnQuanLyMuon, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+				.addComponent(pnQuanLyTra, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+				.addComponent(pnThongKe, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+		);
+		gl_pnMenu.setVerticalGroup(
+			gl_pnMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnMenu.createSequentialGroup()
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnTrangChu, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnQuanLySach, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnQuanLyKho, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnQuanLyDocGia, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnQuanLyMuonTra, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(pnThongKe, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-						.addGroup(gl_pnMenu.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btLohgin, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btLogout))
-						.addContainerGap()));
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnTrangChu, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnQuanLySach, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnQuanLyKho, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnQuanLyDocGia, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnQuanLyMuon, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnQuanLyTra, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnThongKe, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+					.addGroup(gl_pnMenu.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btLohgin, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btLogout))
+					.addContainerGap())
+		);
 		pnThongKe.setLayout(new BorderLayout(0, 0));
-
+		
 		lbThongKe = new JLabel("Th\u1ED1ng K\u00EA");
 		lbThongKe.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lbThongKe.setHorizontalAlignment(SwingConstants.CENTER);
 		pnThongKe.add(lbThongKe);
-		pnQuanLyMuonTra.setLayout(new BorderLayout(0, 0));
+		pnQuanLyTra.setLayout(new BorderLayout(0, 0));
 
-		lbQuanLyMuonTra = new JLabel("Qu\u1EA3n L\u00FD M\u01B0\u1EE3n Tr\u1EA3");
-		lbQuanLyMuonTra.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lbQuanLyMuonTra.setHorizontalAlignment(SwingConstants.CENTER);
-		pnQuanLyMuonTra.add(lbQuanLyMuonTra);
+		lbQuanLyTra = new JLabel("Qu\u1EA3n L\u00FD Tr\u1EA3");
+		lbQuanLyTra.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lbQuanLyTra.setHorizontalAlignment(SwingConstants.CENTER);
+		pnQuanLyTra.add(lbQuanLyTra);
+		pnQuanLyMuon.setLayout(new BorderLayout(0, 0));
+
+		lbQuanLyMuon = new JLabel("Qu\u1EA3n L\u00FD M\u01B0\u1EE3n ");
+		lbQuanLyMuon.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lbQuanLyMuon.setHorizontalAlignment(SwingConstants.CENTER);
+		pnQuanLyMuon.add(lbQuanLyMuon);
 		pnQuanLyDocGia.setLayout(new BorderLayout(0, 0));
 
 		lbQuanLyDocGia = new JLabel("Qu\u1EA3n L\u00FD \u0110\u1ED9c Gi\u1EA3");
@@ -173,9 +194,10 @@ public class MainFrame extends JFrame {
 		List<DanhMucBean> listItem = new ArrayList<>();
 		listItem.add(new DanhMucBean("TrangChinh", pnTrangChu, lbTrangChu));
 		listItem.add(new DanhMucBean("QuanLyKho", pnQuanLyKho, lbQuanLyKho));
-		listItem.add(new DanhMucBean("QuanLyMuonTra", pnQuanLyMuonTra, lbQuanLyMuonTra));
+		listItem.add(new DanhMucBean("QuanLyMuon", pnQuanLyMuon, lbQuanLyMuon));
 		listItem.add(new DanhMucBean("QuanLySach", pnQuanLySach, lbQuanLySach));
 		listItem.add(new DanhMucBean("ThongKe", pnThongKe, lbThongKe));
+		listItem.add(new DanhMucBean("QuanLyTra", pnQuanLyTra, lbQuanLyTra));
 		listItem.add(new DanhMucBean("QuanLyDocGia", pnQuanLyDocGia, lbQuanLyDocGia));
 		controller.setEvent(listItem);
 

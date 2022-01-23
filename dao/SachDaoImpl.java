@@ -1,0 +1,68 @@
+package dao;
+import java.sql.*;
+import model.*;
+import java.util.*;
+public class SachDaoImpl implements SachDao {
+
+	@Override
+	public List<Sach> getList() {
+		Connection conn= MYSQLConnect.getConnection();
+		String sql= "Select *From Sach";
+		List<Sach> list= new ArrayList<>();
+		try {
+			PreparedStatement ps= (PreparedStatement) conn.prepareStatement(sql);
+			ResultSet rs= ps.executeQuery();
+			while(rs.next()) {
+				Sach s= new Sach();
+				s.setMASACH(rs.getString("MaSach"));
+				s.setTENSACH(rs.getString("TENSACH"));;
+				s.setTOMTAT(rs.getString("TOMTAT"));
+				s.setSOTRANG(rs.getInt("SOTRANG"));
+				s.setDONGIA(rs.getDouble("DONGIA"));
+				s.setNAMXUATBAN(rs.getInt("NAMXUATBAN"));
+				s.setTRANGTHAI(rs.getString("TRANGTHAI"));
+				s.setTACGIA(rs.getString("TACGIA"));
+				s.setMATHELOAI(rs.getString("MATHELOAI"));
+				s.setMANXB(rs.getString("MANXB"));
+				list.add(s);
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		return list;
+	}
+
+	@Override
+	public int createOrUpdate(Sach s) {
+		try {
+			Connection cons= MYSQLConnect.getConnection();
+			String sql ="INsert into Sach values(?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement ps= cons.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+			ps.setString(1, s.getMASACH());
+			ps.setString(2, s.getTENSACH());
+			ps.setString(3, s.getTOMTAT());
+			ps.setInt(4, s.getSOTRANG());
+			ps.setDouble(5, s.getDONGIA());
+			ps.setInt(6, s.getNAMXUATBAN());
+			ps.setString(7, s.getTRANGTHAI());
+			ps.setString(8, s.getTACGIA());
+			ps.setString(9, s.getMATHELOAI());
+			ps.setString(10, s.getMANXB());
+			ps.execute();
+			ResultSet rs=ps.getGeneratedKeys();
+			int generatedKey=0;
+			if(rs.next()){
+			generatedKey=rs.getInt(1);	
+			}ps.close();
+			cons.close();
+			return generatedKey;
+		
+		}catch (Exception e) {
+e.printStackTrace();
+		}
+		return 0;
+	}
+ 
+}
