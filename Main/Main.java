@@ -1,7 +1,11 @@
 package Main;
-import Tien.*;
+import view.DangNhapDia;
 public class Main {
 public static void main(String[] args) {
-	new MainFrame().setVisible(true);
+	DangNhapDia dialog= new DangNhapDia(	null, true);
+	dialog.setTitle("Đăng Nhập Hệ Thống");
+	dialog.setResizable(false);
+	dialog.setLocationRelativeTo(null);
+	dialog.setVisible(true);
 }
 }

@@ -6,7 +6,7 @@ public static Connection getConnection() {
 	Connection cons=null;
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		cons=DriverManager.getConnection("jdbc:mysql://localhost:3306/Sach","root","");
+		cons=DriverManager.getConnection("jdbc:mysql://localhost:3306/","root","");
 		
 	}catch(Exception e) {
 		e.printStackTrace();

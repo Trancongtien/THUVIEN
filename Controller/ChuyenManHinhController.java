@@ -12,6 +12,7 @@ import Tien.*;
 import bean.DanhMucBean;
 
 public class ChuyenManHinhController extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private JPanel root;
 	private String kindSelected = "";
 	private List<DanhMucBean> listItem= null;
@@ -56,7 +57,7 @@ public class ChuyenManHinhController extends JFrame {
 		public void mouseClicked(MouseEvent e) {
 
 			switch (kind) {
-			case "TrangChinh":
+			case "TrangChu":
 				node = new TrangChu();
 				break;
 			case "QuanLyDocGia":
@@ -71,8 +72,8 @@ public class ChuyenManHinhController extends JFrame {
 			case"ThongKe":
 				node= new ThongKe();
 				break;
-			case"QuanLyKho":
-				node= new QuanLyKho();
+			case"QuanLyThe":
+				node= new QuanLyThe();
 				break;
 			case"QuanLyTra":
 				node= new QuanLyTra();

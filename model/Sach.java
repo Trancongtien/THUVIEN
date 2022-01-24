@@ -8,13 +8,11 @@ public class Sach {
 	private int SOTRANG;
 	private double DONGIA;
 	private int NAMXUATBAN;
-	private String TRANGTHAI;
 	private String TACGIA,MATHELOAI,MANXB;
 public Sach() {
 }
-
-public Sach(String mASACH, String tENSACH, String tOMTAT, int sOTRANG, double dONGIA, int nAMXUATBAN, String tRANGTHAI,
-		String tACGIA, String mATHELOAI, String MANXB) {
+public Sach(String mASACH, String tENSACH, String tOMTAT, int sOTRANG, double dONGIA, int nAMXUATBAN, String tACGIA,
+		String mATHELOAI, String mANXB) {
 	super();
 	MASACH = mASACH;
 	TENSACH = tENSACH;
@@ -22,20 +20,10 @@ public Sach(String mASACH, String tENSACH, String tOMTAT, int sOTRANG, double dO
 	SOTRANG = sOTRANG;
 	DONGIA = dONGIA;
 	NAMXUATBAN = nAMXUATBAN;
-	TRANGTHAI = tRANGTHAI;
 	TACGIA = tACGIA;
 	MATHELOAI = mATHELOAI;
-	this.MANXB = MANXB;
+	MANXB = mANXB;
 }
-
-public int getSOTRANG() {
-	return SOTRANG;
-}
-
-public void setSOTRANG(int sOTRANG) {
-	SOTRANG = sOTRANG;
-}
-
 public String getMASACH() {
 	return MASACH;
 }
@@ -54,6 +42,12 @@ public String getTOMTAT() {
 public void setTOMTAT(String tOMTAT) {
 	TOMTAT = tOMTAT;
 }
+public int getSOTRANG() {
+	return SOTRANG;
+}
+public void setSOTRANG(int sOTRANG) {
+	SOTRANG = sOTRANG;
+}
 public double getDONGIA() {
 	return DONGIA;
 }
@@ -65,12 +59,6 @@ public int getNAMXUATBAN() {
 }
 public void setNAMXUATBAN(int nAMXUATBAN) {
 	NAMXUATBAN = nAMXUATBAN;
-}
-public String getTRANGTHAI() {
-	return TRANGTHAI;
-}
-public void setTRANGTHAI(String tRANGTHAI) {
-	TRANGTHAI = tRANGTHAI;
 }
 public String getTACGIA() {
 	return TACGIA;
@@ -87,8 +75,8 @@ public void setMATHELOAI(String mATHELOAI) {
 public String getMANXB() {
 	return MANXB;
 }
-public void setMANXB(String MANXB) {
-	this.MANXB = MANXB;
+public void setMANXB(String mANXB) {
+	MANXB = mANXB;
 }
 
 }

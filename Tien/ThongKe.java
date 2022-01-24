@@ -4,10 +4,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
 public class ThongKe extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+	private static final long serialVersionUID = 1L;
 	public ThongKe() {
 		setLayout(new BorderLayout(0, 0));
 		
