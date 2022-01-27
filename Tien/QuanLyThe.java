@@ -1,187 +1,217 @@
 package Tien;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import Controller.QuanLyTheController;
+
 import java.awt.Font;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
+import com.toedter.calendar.JDateChooser;
+
+
 
 public class QuanLyThe extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private javax.swing.JButton btAdd;
-	private javax.swing.JButton btDelete;
-	private javax.swing.JButton btInsert;
-	private javax.swing.JPanel pnTable;
-	private javax.swing.JPanel pnRoot;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JLabel lbghichu;
-	private javax.swing.JLabel lbmadocgia;
-	private javax.swing.JLabel lbmathe;
-	private javax.swing.JLabel lbngaybatdau;
-	private javax.swing.JLabel lbngayketthuc;
-	private javax.swing.JTextField txtFind;
-	private javax.swing.JTextArea txtghichu;
-	private javax.swing.JTextField txtmadocgia;
-	private javax.swing.JTextField txtmathe;
-	private javax.swing.JTextField txtngaybatdau;
-	private javax.swing.JTextField txtngayketthuc;
-
+    private javax.swing.JButton btAdd;
+    private javax.swing.JButton btInsert;
+    private javax.swing.JButton btDelete;
+    private javax.swing.JLabel lbMaDocGia;
+    private javax.swing.JLabel lbGhiChu;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel lbMaThe;
+    private javax.swing.JLabel lbNgayBatDau;
+    private javax.swing.JLabel lbNgayKetThuc;
+    private javax.swing.JPanel pnTable;
+    private javax.swing.JPanel pnView;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtGhiChu;
+    private javax.swing.JTextField txtMaDocGia;
+    private javax.swing.JTextField txtFind;
+    private javax.swing.JTextField txtMaThe;
+	    private JLabel lblNewLabel_1;
 	public QuanLyThe() {
-		pnTable = new javax.swing.JPanel();
-		pnTable.setBorder(new LineBorder(new Color(0, 0, 0)));
-		pnRoot = new javax.swing.JPanel();
-		txtFind = new javax.swing.JTextField();
-		txtFind.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbmathe = new javax.swing.JLabel();
-		lbmathe.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lbngaybatdau = new javax.swing.JLabel();
-		lbngaybatdau.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lbngayketthuc = new javax.swing.JLabel();
-		lbngayketthuc.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtmathe = new javax.swing.JTextField();
-		txtmathe.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtngaybatdau = new javax.swing.JTextField();
-		txtngaybatdau.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtngayketthuc = new javax.swing.JTextField();
-		txtngayketthuc.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbmadocgia = new javax.swing.JLabel();
-		lbmadocgia.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		txtmadocgia = new javax.swing.JTextField();
-		txtmadocgia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lbghichu = new javax.swing.JLabel();
-		lbghichu.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		jScrollPane1 = new javax.swing.JScrollPane();
-		txtghichu = new javax.swing.JTextArea();
-		txtghichu.setTabSize(13);
-		txtghichu.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btAdd = new javax.swing.JButton();
-		btInsert = new javax.swing.JButton();
-		btDelete = new javax.swing.JButton();
 
-		javax.swing.GroupLayout gl_pnTable = new javax.swing.GroupLayout(pnTable);
-		pnTable.setLayout(gl_pnTable);
-		gl_pnTable.setHorizontalGroup(gl_pnTable.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 0, Short.MAX_VALUE));
-		gl_pnTable.setVerticalGroup(gl_pnTable.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGap(0, 411, Short.MAX_VALUE));
+	     pnView = new javax.swing.JPanel();
+	     pnView.setBackground(UIManager.getColor("Button.shadow"));
+	        txtFind = new javax.swing.JTextField();
+	        txtFind.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+	        lbMaThe = new javax.swing.JLabel();
+	        lbMaThe.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        lbNgayBatDau = new javax.swing.JLabel();
+	        lbNgayBatDau.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        lbNgayKetThuc = new javax.swing.JLabel();
+	        lbNgayKetThuc.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        txtMaThe = new javax.swing.JTextField();
+	        txtMaThe.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+	        lbMaDocGia = new javax.swing.JLabel();
+	        lbMaDocGia.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        lbGhiChu = new javax.swing.JLabel();
+	        lbGhiChu.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        jLabel12 = new javax.swing.JLabel();
+	        txtMaDocGia = new javax.swing.JTextField();
+	        txtMaDocGia.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+	        jScrollPane1 = new javax.swing.JScrollPane();
+	        txtGhiChu = new javax.swing.JTextArea();
+	        btAdd = new javax.swing.JButton();
+	        btAdd.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        btInsert = new javax.swing.JButton();
+	        btInsert.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        btDelete = new javax.swing.JButton();
+	        btDelete.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        pnTable = new javax.swing.JPanel();
 
-		txtFind.setText("");
+	        txtFind.setText("");
 
-		lbmathe.setText("Mã Thẻ :");
+	        lbMaThe.setText("Mã Thẻ :");
 
-		lbngaybatdau.setText("Ngày Bắt Đầu : ");
+	        lbNgayBatDau.setText("Ngày Bắt Đầu :");
 
-		lbngayketthuc.setText("Ngày Kết Thúc :");
+	        lbNgayKetThuc.setText("Ngày Kết Thúc :");
 
-		txtmathe.setText("");
+	        txtMaThe.setText("");
 
-		txtngaybatdau.setText("");
+	        lbMaDocGia.setText("         Mã Độc Giả :");
 
-		txtngayketthuc.setText("");
+	        lbGhiChu.setText("         Ghi Chú :");
 
-		lbmadocgia.setText("         Mã Độc Giả :");
+	        jLabel12.setText("");
 
-		txtmadocgia.setText("");
+	        txtMaDocGia.setText("");
 
-		lbghichu.setText("         Ghi Chú");
+	        txtGhiChu.setColumns(20);
+	        txtGhiChu.setRows(5);
+	        jScrollPane1.setViewportView(txtGhiChu);
 
-		txtghichu.setColumns(20);
-		txtghichu.setRows(5);
-		jScrollPane1.setViewportView(txtghichu);
+	        btAdd.setText("Thêm");
 
-		btAdd.setText("Thêm");
+	        btInsert.setText("Sửa");
 
-		btInsert.setText("Sửa  ");
+	        btDelete.setText("Xóa");
+	        
+	        lblNewLabel_1 = new JLabel("Nhập ký tự muốn tìm :");
+	        lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        
+	        JDateChooser dateChooser = new JDateChooser();
+	        dateChooser.setDateFormatString("dd-MM-yyyy");
+	        
+	        JDateChooser dateChooser_1 = new JDateChooser();
+	        dateChooser_1.setDateFormatString("dd-MM-yyyy");
+	        
 
-		btDelete.setText("Xóa  ");
+	        javax.swing.GroupLayout gl_pnView = new javax.swing.GroupLayout(pnView);
+	        gl_pnView.setHorizontalGroup(
+	        	gl_pnView.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(gl_pnView.createSequentialGroup()
+	        			.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
+	        				.addGroup(gl_pnView.createSequentialGroup()
+	        					.addGap(68)
+	        					.addGroup(gl_pnView.createParallelGroup(Alignment.TRAILING)
+	        						.addGroup(gl_pnView.createSequentialGroup()
+	        							.addGap(13)
+	        							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+	        							.addGap(40)
+	        							.addComponent(txtFind, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
+	        						.addGroup(gl_pnView.createSequentialGroup()
+	        							.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING, false)
+	        								.addComponent(lbMaThe, GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+	        								.addComponent(lbNgayBatDau, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	        								.addComponent(lbNgayKetThuc, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	        							.addPreferredGap(ComponentPlacement.UNRELATED)
+	        							.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
+	        								.addComponent(dateChooser_1, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+	        								.addComponent(txtMaThe, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+	        								.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+	        							.addPreferredGap(ComponentPlacement.UNRELATED)
+	        							.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
+	        								.addComponent(lbMaDocGia, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+	        								.addComponent(lbGhiChu, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+	        								.addComponent(jLabel12, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))))
+	        					.addPreferredGap(ComponentPlacement.RELATED)
+	        					.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
+	        						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+	        						.addComponent(txtMaDocGia, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
+	        				.addGroup(gl_pnView.createSequentialGroup()
+	        					.addGap(165)
+	        					.addComponent(btAdd, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+	        					.addGap(91)
+	        					.addComponent(btInsert, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+	        					.addGap(94)
+	        					.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+	        					.addGap(148)))
+	        			.addGap(149))
+	        );
+	        gl_pnView.setVerticalGroup(
+	        	gl_pnView.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(gl_pnView.createSequentialGroup()
+	        			.addContainerGap()
+	        			.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
+	        				.addComponent(txtFind, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(lblNewLabel_1))
+	        			.addGap(18)
+	        			.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
+	        				.addComponent(lbMaThe)
+	        				.addComponent(txtMaThe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+	        				.addComponent(lbMaDocGia)
+	        				.addComponent(txtMaDocGia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+	        			.addGap(18)
+	        			.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
+	        				.addGroup(gl_pnView.createSequentialGroup()
+	        					.addGroup(gl_pnView.createParallelGroup(Alignment.TRAILING)
+	        						.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
+	        							.addComponent(lbNgayBatDau)
+	        							.addComponent(lbGhiChu))
+	        						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+	        					.addGap(18)
+	        					.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
+	        						.addComponent(dateChooser_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+	        						.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
+	        							.addComponent(lbNgayKetThuc)
+	        							.addComponent(jLabel12))))
+	        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+	        			.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
+	        				.addGroup(gl_pnView.createSequentialGroup()
+	        					.addGap(17)
+	        					.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
+	        						.addComponent(btAdd)
+	        						.addComponent(btInsert)))
+	        				.addGroup(gl_pnView.createSequentialGroup()
+	        					.addGap(18)
+	        					.addComponent(btDelete)))
+	        			.addGap(30))
+	        );
+	        pnView.setLayout(gl_pnView);
 
-		javax.swing.GroupLayout gl_pnRoot = new javax.swing.GroupLayout(pnRoot);
-		gl_pnRoot.setHorizontalGroup(
-			gl_pnRoot.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_pnRoot.createSequentialGroup()
-					.addGap(0)
-					.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnRoot.createSequentialGroup()
-							.addGap(66)
-							.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(lbngayketthuc, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-								.addComponent(lbngaybatdau, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lbmathe, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtmathe, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-								.addComponent(txtngaybatdau, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-								.addComponent(txtngayketthuc, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING)
-								.addComponent(lbmadocgia, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-								.addComponent(lbghichu, GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)))
-						.addGroup(gl_pnRoot.createSequentialGroup()
-							.addGap(134)
-							.addComponent(btAdd, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-							.addGap(118)
-							.addComponent(btInsert, GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-							.addGap(99)))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtmadocgia, GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-						.addComponent(jScrollPane1)
-						.addGroup(gl_pnRoot.createSequentialGroup()
-							.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-							.addGap(62)))
-					.addGap(86))
-				.addGroup(gl_pnRoot.createSequentialGroup()
-					.addGap(274)
-					.addComponent(txtFind, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-					.addGap(253))
-		);
-		gl_pnRoot.setVerticalGroup(
-			gl_pnRoot.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnRoot.createSequentialGroup()
-					.addGap(21)
-					.addComponent(txtFind, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(txtmadocgia)
-						.addComponent(lbmathe, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-						.addComponent(txtmathe, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-						.addComponent(lbmadocgia, GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
-					.addGap(18)
-					.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnRoot.createSequentialGroup()
-							.addGroup(gl_pnRoot.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lbngaybatdau, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtngaybatdau, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lbghichu, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-							.addGap(18)
-							.addGroup(gl_pnRoot.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lbngayketthuc, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtngayketthuc, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_pnRoot.createParallelGroup(Alignment.LEADING)
-						.addComponent(btAdd)
-						.addGroup(gl_pnRoot.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btInsert)
-							.addComponent(btDelete)))
-					.addContainerGap())
-		);
-		pnRoot.setLayout(gl_pnRoot);
+	        pnTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-		this.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addComponent(pnRoot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-						Short.MAX_VALUE)
-				.addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-						Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-						.addComponent(pnRoot, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+	        javax.swing.GroupLayout gl_pnTable = new javax.swing.GroupLayout(pnTable);
+	        pnTable.setLayout(gl_pnTable);
+	        gl_pnTable.setHorizontalGroup(
+	            gl_pnTable.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGap(0, 0, Short.MAX_VALUE)
+	        );
+	        gl_pnTable.setVerticalGroup(
+	            gl_pnTable.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGap(0, 366, Short.MAX_VALUE)
+	        );
+
+	        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+	        this.setLayout(layout);
+	        layout.setHorizontalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addComponent(pnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	            .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+	        );
+	        layout.setVerticalGroup(
+	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+	            .addGroup(layout.createSequentialGroup()
+	                .addComponent(pnView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+	                .addGap(0, 0, 0)
+	                .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	        );
+	        
+	        QuanLyTheController controller = new QuanLyTheController(pnTable, txtFind);
+	        controller.setDateToTable();
+	    }
 	}
-}
+	

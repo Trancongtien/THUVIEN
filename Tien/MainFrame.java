@@ -8,11 +8,15 @@ import javax.swing.border.LineBorder;
 
 import Controller.ChuyenManHinhController;
 import bean.DanhMucBean;
+import view.DangNhapDia;
+
 import java.awt.Color;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.util.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
@@ -39,8 +43,8 @@ public class MainFrame extends JFrame {
 	private JLabel lbQuanLyDocGia;
 	private JLabel lbQuanLyMuon;
 	private JLabel lbQuanLyTra;
-	private JPanel pnThongKe;
-	private JLabel lbThongKe;
+	private JPanel pnThuThu;
+	private JLabel lbThuThu;
 
 	public MainFrame() {
 		setTitle("Quan Ly Thu Vien");
@@ -90,8 +94,21 @@ public class MainFrame extends JFrame {
 		pnQuanLyTra.setBackground(Color.GREEN);
 
 		JButton btLogout = new JButton("Logout");
+		btLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				DangNhapDia dialog= new DangNhapDia(null, true);
+				dialog.setTitle("Đăng Nhập Hệ Thống");
+				dialog.setResizable(false);
+				dialog.setLocationRelativeTo(null);
+				dialog.setVisible(true);
+			}
+		});
 		
-		pnThongKe = new JPanel();
+		pnThuThu = new JPanel();
+		pnThuThu.setBackground(Color.GREEN);
+		
+		JPanel pnThongKe = new JPanel();
 		pnThongKe.setBackground(Color.GREEN);
 		GroupLayout gl_pnMenu = new GroupLayout(pnMenu);
 		gl_pnMenu.setHorizontalGroup(
@@ -109,6 +126,7 @@ public class MainFrame extends JFrame {
 				.addComponent(pnQuanLyDocGia, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 				.addComponent(pnQuanLyMuon, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 				.addComponent(pnQuanLyTra, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+				.addComponent(pnThuThu, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 				.addComponent(pnThongKe, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 		);
 		gl_pnMenu.setVerticalGroup(
@@ -128,8 +146,10 @@ public class MainFrame extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(pnQuanLyTra, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(pnThongKe, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+					.addComponent(pnThuThu, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(pnThongKe, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
 					.addGroup(gl_pnMenu.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btLohgin, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btLogout))
@@ -137,10 +157,16 @@ public class MainFrame extends JFrame {
 		);
 		pnThongKe.setLayout(new BorderLayout(0, 0));
 		
-		lbThongKe = new JLabel("Th\u1ED1ng K\u00EA");
+		JLabel lbThongKe = new JLabel("Th\u1ED1ng K\u00EA");
 		lbThongKe.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lbThongKe.setHorizontalAlignment(SwingConstants.CENTER);
 		pnThongKe.add(lbThongKe);
+		pnThuThu.setLayout(new BorderLayout(0, 0));
+		
+		lbThuThu = new JLabel("Qu\u1EA3n L\u00FD Th\u1EE7 Th\u01B0");
+		lbThuThu.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lbThuThu.setHorizontalAlignment(SwingConstants.CENTER);
+		pnThuThu.add(lbThuThu);
 		pnQuanLyTra.setLayout(new BorderLayout(0, 0));
 
 		lbQuanLyTra = new JLabel("Qu\u1EA3n L\u00FD Tr\u1EA3");
@@ -193,7 +219,8 @@ public class MainFrame extends JFrame {
 		listItem.add(new DanhMucBean("QuanLyThe", pnQuanLyThe, lbQuanLyThe));
 		listItem.add(new DanhMucBean("QuanLyMuon", pnQuanLyMuon, lbQuanLyMuon));
 		listItem.add(new DanhMucBean("QuanLySach", pnQuanLySach, lbQuanLySach));
-		listItem.add(new DanhMucBean("ThongKe", pnThongKe, lbThongKe));
+		listItem.add(new DanhMucBean("QuanLyThuThu", pnThuThu, lbThuThu));
+		listItem.add(new DanhMucBean("ThongKe",pnThongKe,lbThongKe));
 		listItem.add(new DanhMucBean("QuanLyTra", pnQuanLyTra, lbQuanLyTra));
 		listItem.add(new DanhMucBean("QuanLyDocGia", pnQuanLyDocGia, lbQuanLyDocGia));
 		controller.setEvent(listItem);

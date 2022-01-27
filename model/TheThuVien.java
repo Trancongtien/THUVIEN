@@ -1,15 +1,17 @@
 package model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class TheThuVien {
 private String mathe;
-private Calendar ngaybatdau;
-private Calendar ngaykethuc;
+private Date ngaybatdau;
+private Date ngaykethuc;
 private String ghichu;
 private String madocgia;
-public TheThuVien(String mathe, Calendar ngaybatdau, Calendar ngaykethuc, String ghichu, String madocgia) {
-	super();
+public TheThuVien() {
+	
+}
+public TheThuVien(String mathe, Date ngaybatdau, Date ngaykethuc, String ghichu, String madocgia) {
 	this.mathe = mathe;
 	this.ngaybatdau = ngaybatdau;
 	this.ngaykethuc = ngaykethuc;
@@ -22,16 +24,16 @@ public String getMathe() {
 public void setMathe(String mathe) {
 	this.mathe = mathe;
 }
-public Calendar getNgaybatdau() {
+public Date getNgaybatdau() {
 	return ngaybatdau;
 }
-public void setNgaybatdau(Calendar ngaybatdau) {
+public void setNgaybatdau(Date ngaybatdau) {
 	this.ngaybatdau = ngaybatdau;
 }
-public Calendar getNgaykethuc() {
+public Date getNgaykethuc() {
 	return ngaykethuc;
 }
-public void setNgaykethuc(Calendar ngaykethuc) {
+public void setNgaykethuc(Date ngaykethuc) {
 	this.ngaykethuc = ngaykethuc;
 }
 public String getGhichu() {

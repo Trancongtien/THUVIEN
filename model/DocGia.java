@@ -1,13 +1,13 @@
 package model;
 
-import java.util.Calendar;
+import java.util.*;
 
 public class DocGia {
 	private String MaDocGia;
 	private String hodem, ten;
-	private Calendar ngaysinh;
+	private Date ngaysinh;
 	private boolean gioitinh;
-	private int sdt;
+	private String sdt;
 	private String diachi;
 	private String maloaidocgia;
 
@@ -15,8 +15,8 @@ public class DocGia {
 
 	}
 
-	public DocGia(String maDocGia, String hodem, String ten, Calendar ngaysinh, boolean gioitinh, int sdt,
-			String diachi, String maloaidocgia) {
+	public DocGia(String maDocGia, String hodem, String ten, Date ngaysinh, boolean gioitinh, String sdt, String diachi,
+			String maloaidocgia) {
 		super();
 		MaDocGia = maDocGia;
 		this.hodem = hodem;
@@ -52,11 +52,11 @@ public class DocGia {
 		this.ten = ten;
 	}
 
-	public Calendar getNgaysinh() {
+	public Date getNgaysinh() {
 		return ngaysinh;
 	}
 
-	public void setNgaysinh(Calendar ngaysinh) {
+	public void setNgaysinh(Date ngaysinh) {
 		this.ngaysinh = ngaysinh;
 	}
 
@@ -68,11 +68,11 @@ public class DocGia {
 		this.gioitinh = gioitinh;
 	}
 
-	public int getSdt() {
+	public String getSdt() {
 		return sdt;
 	}
 
-	public void setSdt(int sdt) {
+	public void setSdt(String sdt) {
 		this.sdt = sdt;
 	}
 

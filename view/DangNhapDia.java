@@ -29,6 +29,7 @@ public class DangNhapDia extends JDialog {
 		jPanel1 = new javax.swing.JPanel();
         lbView = new javax.swing.JLabel();
         pnMain = new javax.swing.JPanel();
+        pnMain.setBackground(Color.GREEN);
         jLabel5 = new javax.swing.JLabel();
         lbuser = new javax.swing.JLabel();
         lbuser.setIcon(new ImageIcon(DangNhapDia.class.getResource("/Image/icons8_male_user_24px.png")));

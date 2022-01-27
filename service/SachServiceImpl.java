@@ -7,17 +7,18 @@ import model.Sach;
 
 public class SachServiceImpl implements SachService {
 private SachDao sachDao=null;
+public SachServiceImpl() {
+	this.sachDao= new SachDaoImpl();
+}
 	@Override
 	public List<Sach> getList() {
 		return sachDao.getList();
 	}
-	public SachServiceImpl() {
-		this.sachDao= new SachDaoImpl();
-	}
 	@Override
 	public int createOrUpdate(Sach s) {
-		// TODO Auto-generated method stub
 		return sachDao.createOrUpdate(s);
 	}
+	
+	
 
 }

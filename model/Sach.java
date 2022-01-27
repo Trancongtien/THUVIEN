@@ -6,13 +6,13 @@ public class Sach {
 	private String TENSACH;
 	private String TOMTAT;
 	private int SOTRANG;
-	private double DONGIA;
+	private int DONGIA;
 	private int NAMXUATBAN;
-	private String TACGIA,MATHELOAI,MANXB;
+	private String TACGIA,THELOAI,NHAXUATBAN;
 public Sach() {
 }
-public Sach(String mASACH, String tENSACH, String tOMTAT, int sOTRANG, double dONGIA, int nAMXUATBAN, String tACGIA,
-		String mATHELOAI, String mANXB) {
+public Sach(String mASACH, String tENSACH, String tOMTAT, int sOTRANG, int dONGIA, int nAMXUATBAN, String tACGIA,
+		String tHELOAI, String nHAXUATBAN) {
 	super();
 	MASACH = mASACH;
 	TENSACH = tENSACH;
@@ -21,8 +21,8 @@ public Sach(String mASACH, String tENSACH, String tOMTAT, int sOTRANG, double dO
 	DONGIA = dONGIA;
 	NAMXUATBAN = nAMXUATBAN;
 	TACGIA = tACGIA;
-	MATHELOAI = mATHELOAI;
-	MANXB = mANXB;
+	THELOAI = tHELOAI;
+	NHAXUATBAN = nHAXUATBAN;
 }
 public String getMASACH() {
 	return MASACH;
@@ -48,10 +48,10 @@ public int getSOTRANG() {
 public void setSOTRANG(int sOTRANG) {
 	SOTRANG = sOTRANG;
 }
-public double getDONGIA() {
+public int getDONGIA() {
 	return DONGIA;
 }
-public void setDONGIA(double dONGIA) {
+public void setDONGIA(int dONGIA) {
 	DONGIA = dONGIA;
 }
 public int getNAMXUATBAN() {
@@ -66,17 +66,17 @@ public String getTACGIA() {
 public void setTACGIA(String tACGIA) {
 	TACGIA = tACGIA;
 }
-public String getMATHELOAI() {
-	return MATHELOAI;
+public String getTHELOAI() {
+	return THELOAI;
 }
-public void setMATHELOAI(String mATHELOAI) {
-	MATHELOAI = mATHELOAI;
+public void setTHELOAI(String tHELOAI) {
+	THELOAI = tHELOAI;
 }
-public String getMANXB() {
-	return MANXB;
+public String getNHAXUATBAN() {
+	return NHAXUATBAN;
 }
-public void setMANXB(String mANXB) {
-	MANXB = mANXB;
+public void setNHAXUATBAN(String nHAXUATBAN) {
+	NHAXUATBAN = nHAXUATBAN;
 }
 
 }
