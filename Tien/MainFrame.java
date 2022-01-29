@@ -69,7 +69,7 @@ public class MainFrame extends JFrame {
 		pnView.setBorder(new EmptyBorder(5, 5, 5, 5));
 		pnRoot.add(pnView);
 
-		JButton btLohgin = new JButton("Sign In");
+		JButton btAbout = new JButton("Điều khoản người dùng");
 		pnRoot.add(pnMenu, BorderLayout.WEST);
 
 		panel = new JPanel();
@@ -116,7 +116,7 @@ public class MainFrame extends JFrame {
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
 				.addGroup(gl_pnMenu.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btLohgin)
+					.addComponent(btAbout)
 					.addPreferredGap(ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
 					.addComponent(btLogout)
 					.addContainerGap())
@@ -151,7 +151,7 @@ public class MainFrame extends JFrame {
 					.addComponent(pnThongKe, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
 					.addGroup(gl_pnMenu.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btLohgin, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btAbout, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btLogout))
 					.addContainerGap())
 		);

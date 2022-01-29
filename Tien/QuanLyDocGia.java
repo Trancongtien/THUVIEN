@@ -28,7 +28,7 @@ public class QuanLyDocGia extends JPanel {
 	private javax.swing.JTextField txtMaDocGia;
 	private javax.swing.JTextField txtHoDem;
 	private javax.swing.JTextField txtTen;
-	private javax.swing.JTextField txtMaPhieuMuon;
+	private javax.swing.JTextField txtGioiTinh;
 	private javax.swing.JTextField txtSDT;
 	private javax.swing.JTextField txtDiaChi;
 	private javax.swing.JTextField txtMaLoaiDocGia;
@@ -62,8 +62,8 @@ public class QuanLyDocGia extends JPanel {
 		lbDiaChi.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lbMaLoaiDocGia = new javax.swing.JLabel();
 		lbMaLoaiDocGia.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		txtMaPhieuMuon = new javax.swing.JTextField();
-		txtMaPhieuMuon.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		txtGioiTinh = new javax.swing.JTextField();
+		txtGioiTinh.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtSDT = new javax.swing.JTextField();
 		txtSDT.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtDiaChi = new javax.swing.JTextField();
@@ -110,7 +110,7 @@ public class QuanLyDocGia extends JPanel {
 
 		lbMaLoaiDocGia.setText("Mã Loại Độc Giả :");
 
-		txtMaPhieuMuon.setText("");
+		txtGioiTinh.setText("");
 
 		txtSDT.setText("");
 
@@ -128,7 +128,7 @@ public class QuanLyDocGia extends JPanel {
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		
 		JDateChooser txtNgaySinh = new JDateChooser();
-		txtNgaySinh.setDateFormatString("dd-MM-yyyy\r\n");
+		txtNgaySinh.setDateFormatString("dd/MM/yyyy\r\n");
 
 		javax.swing.GroupLayout gl_pnQuery = new javax.swing.GroupLayout(pnQuery);
 		gl_pnQuery.setHorizontalGroup(
@@ -179,7 +179,7 @@ public class QuanLyDocGia extends JPanel {
 								.addGroup(gl_pnQuery.createSequentialGroup()
 									.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
 									.addGap(77))
-								.addComponent(txtMaPhieuMuon, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+								.addComponent(txtGioiTinh, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
 								.addComponent(txtSDT, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
 								.addComponent(txtDiaChi, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
 								.addComponent(txtMaLoaiDocGia, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))))
@@ -201,7 +201,7 @@ public class QuanLyDocGia extends JPanel {
 									.addComponent(lbMaDocGia, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 								.addComponent(txtMaDocGia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lbGioiTinh)
-								.addComponent(txtMaPhieuMuon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(txtGioiTinh, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
 							.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
 								.addGroup(gl_pnQuery.createSequentialGroup()
@@ -250,7 +250,7 @@ public class QuanLyDocGia extends JPanel {
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-	QuanLyDocGiaController controller = new QuanLyDocGiaController(pnTable, txtFind);
+	QuanLyDocGiaController controller = new QuanLyDocGiaController(pnTable, txtFind, txtMaDocGia, txtHoDem, txtTen, txtDiaChi, txtSDT, txtMaLoaiDocGia, txtGioiTinh, txtNgaySinh, btAdd, btDelete, btInsert);
 	controller.setDateToTabel();
 	
 	}

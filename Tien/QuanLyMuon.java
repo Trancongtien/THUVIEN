@@ -100,7 +100,7 @@ public class QuanLyMuon extends JPanel {
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		
 		JDateChooser txtNgayMuon = new JDateChooser();
-		txtNgayMuon.setDateFormatString("dd-MM-yyyy");
+		txtNgayMuon.setDateFormatString("dd/MM/yyyy");
 
 		javax.swing.GroupLayout gl_pnQuery = new javax.swing.GroupLayout(pnQuery);
 		gl_pnQuery.setHorizontalGroup(
@@ -199,8 +199,8 @@ public class QuanLyMuon extends JPanel {
 						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 	
-	QuanLyMuonController controller = new QuanLyMuonController(pnTable, txtFind);
-	controller.setDateToTable();
+	QuanLyMuonController controller = new QuanLyMuonController(pnTable, txtFind, btAdd, btInsert, btDelete, txtSoSachMuon, txtMaThuThu, txtMaThe, txtMaSach, txtNgayMuon);
+			controller.setDateToTable();
 			
 	}
 }

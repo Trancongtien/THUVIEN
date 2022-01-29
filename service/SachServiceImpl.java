@@ -15,9 +15,14 @@ public SachServiceImpl() {
 		return sachDao.getList();
 	}
 	@Override
-	public int createOrUpdate(Sach s) {
-		return sachDao.createOrUpdate(s);
+	public int Update(Sach s) {
+		return sachDao.Update(s);
 	}
+	@Override
+	public int Insert(Sach s) {
+		return sachDao.Insert(s);
+	}
+	
 	
 	
 

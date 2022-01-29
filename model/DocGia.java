@@ -1,8 +1,11 @@
 package model;
 
-import java.util.*;
+import java.io.Serializable;
+import java.sql.Date;
 
-public class DocGia {
+public class DocGia implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String MaDocGia;
 	private String hodem, ten;
 	private Date ngaysinh;
@@ -17,7 +20,6 @@ public class DocGia {
 
 	public DocGia(String maDocGia, String hodem, String ten, Date ngaysinh, boolean gioitinh, String sdt, String diachi,
 			String maloaidocgia) {
-		super();
 		MaDocGia = maDocGia;
 		this.hodem = hodem;
 		this.ten = ten;

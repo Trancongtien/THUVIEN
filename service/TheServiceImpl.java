@@ -13,5 +13,13 @@ private TheThuVienDAO theThuVienDao=null;
 	public TheServiceImpl() {
 		this.theThuVienDao = new TheThuVienDAOImpl();
 	}
+	@Override
+	public int Update(TheThuVien ttt) {
+		return theThuVienDao.Update(ttt);
+	}
+	@Override
+	public int Insert(TheThuVien ttt) {
+		return theThuVienDao.Insert(ttt);
+	}
 
 }

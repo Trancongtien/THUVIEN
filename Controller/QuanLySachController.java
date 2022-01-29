@@ -4,31 +4,25 @@ import model.*;
 import service.*;
 import utility.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.awt.event.*;
+import java.sql.*;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import javax.swing.event.*;
 
-import java.util.List;
 import java.util.*;
 import javax.swing.table.*;
 
 import dao.SQLConnect;
 
-public class QuanLySachController implements ActionListener,MouseListener{
+public class QuanLySachController extends JFrame implements ActionListener, MouseListener {
+
+	private static final long serialVersionUID = 1L;
 	private JPanel jpnView;
 	private JTextField jtfSearch;
 	private JButton btAdd;
 	private JButton brInsert;
 	private JButton btDelete;
-	private JFrame f;
 	private JTextField txtTacGia;
 	private JTextField txtTheLoai;
 	private JTextField txtNhaXuatBan;
@@ -67,48 +61,15 @@ public class QuanLySachController implements ActionListener,MouseListener{
 	private DefaultTableModel model;
 	private JTable table;
 	JScrollPane scollPane;
-	int selec;
+	Vector<Sach> listItem = null;
 
 	public void setDateToTabel() {
 		reload();
-		selec = 0;
-		table.addMouseListener(this);
-
-		btAdd.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		brInsert.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-		btDelete.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
-
-	}
-
-	public void reload() {
-		List<Sach> listItem = sachservice.getList();
 		model = new ClassTableModel().setTableSach(listItem, COLUMNS);
 		table = new JTable(model);
 		rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
 		scollPane = new JScrollPane();
-
 		jtfSearch.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -119,9 +80,6 @@ public class QuanLySachController implements ActionListener,MouseListener{
 				} else {
 					rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 				}
-				table.validate();
-				table.repaint();
-				model.fireTableDataChanged();
 			}
 
 			@Override
@@ -132,24 +90,11 @@ public class QuanLySachController implements ActionListener,MouseListener{
 				} else {
 					rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 				}
-				table.validate();
-				table.repaint();
-				model.fireTableDataChanged();
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-			
-				model.fireTableDataChanged();
-				table.validate();
-				table.repaint();
-				scollPane.getViewport().add(table);
-				scollPane.setPreferredSize(new Dimension(1300, 400));
-				jpnView.removeAll();
-				jpnView.setLayout(new BorderLayout());
-				jpnView.add(scollPane);
-				jpnView.validate();
-				jpnView.repaint();
+
 			}
 		});
 		model.fireTableDataChanged();
@@ -166,50 +111,76 @@ public class QuanLySachController implements ActionListener,MouseListener{
 		jpnView.add(scollPane);
 		jpnView.validate();
 		jpnView.repaint();
+		table.addMouseListener(this);
+
+		btAdd.addActionListener(this);
+		brInsert.addActionListener(this);
+		btDelete.addActionListener(this);
+	}
+
+	public void reload() {
+		listItem = (Vector<Sach>) sachservice.getList();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() == btAdd) {
+			
+		} else if (e.getSource() == brInsert) {
+			
+		} else if (e.getSource() == btDelete) {
+			String sql = "Delete from Sach where MaSach=\'" + txtMaSach.getText() + "\'";
+			try {
+				Connection conn = SQLConnect.getConnection();
+				PreparedStatement prs = conn.prepareStatement(sql);
+				prs.executeUpdate();
+				reload();
+				setDateToTabel();
+				model.fireTableDataChanged();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+
+		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		 model = (DefaultTableModel) table.getModel();
-		selec = table.getSelectedRow();
-		txtMaSach.setText((model.getValueAt(selec, 0).toString()));
-		txtTenSach.setText((String)model.getValueAt(selec, 2));
-		txtTomTat.setText((String)model.getValueAt(selec, 3));
-		txtSoTrang.setText(model.getValueAt(selec, 4).toString());
-		txtDonGia.setText(model.getValueAt(selec, 5).toString());
-		txtNamXB.setText(model.getValueAt(selec, 6).toString());
-		txtTacGia.setText((String)model.getValueAt(selec, 7));
-		txtTheLoai.setText((String)model.getValueAt(selec, 8));
-		txtNhaXuatBan.setText((String)model.getValueAt(selec, 9));
-		model.fireTableDataChanged();
+		int selectedRowIndex = table.getSelectedRow();
+		   selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+		Sach st = (Sach) listItem.elementAt(selectedRowIndex);
+		txtMaSach.setText(st.getMASACH());
+		txtTenSach.setText(st.getTENSACH());
+		txtTomTat.setText(st.getTOMTAT());
+		txtSoTrang.setText(String.valueOf(st.getSOTRANG()));
+		txtDonGia.setText(String.valueOf(st.getDONGIA()));
+		txtNamXB.setText(String.valueOf(st.getNAMXUATBAN()));
+		txtTacGia.setText(st.getTACGIA());
+		txtTheLoai.setText(st.getTHELOAI());
+		txtNhaXuatBan.setText(st.getNHAXUATBAN());
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

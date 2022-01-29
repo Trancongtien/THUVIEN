@@ -15,6 +15,17 @@ private MuonDAO muonDao=null;
 	public MuonServiceImpl() {
 		this.muonDao = new MuonDAOImpl();
 	}
+
+	@Override
+	public int Update(Muon m) {
+		
+		return muonDao.Update(m);
+	}
+
+	@Override
+	public int Insert(Muon m) {
+		return muonDao.Insert(m);
+	}
 	
 
 }

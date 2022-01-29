@@ -15,5 +15,14 @@ private TraDAO traDao=null;
 	public TraServiceImpl() {
 		this.traDao = new TraDAOImpl();
 	}
+	@Override
+	public int Update(Tra t) {
+	
+		return traDao.Update(t);
+	}
+	@Override
+	public int Insert(Tra t) {
+		return traDao.Insert(t);
+	}
 
 }

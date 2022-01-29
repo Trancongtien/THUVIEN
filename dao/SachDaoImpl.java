@@ -36,30 +36,50 @@ public class SachDaoImpl implements SachDao {
 	}
 
 	@Override
-	public int createOrUpdate(Sach s) {
+	public int Update(Sach s) {
 		try {
-			Connection cons = SQLConnect.getConnection();
-			String sql = "INsert into Sach values(?,?,?,?,?,?,?,?,?)";
-			PreparedStatement ps = cons.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			Connection conn = SQLConnect.getConnection();
+			String sql = "Update Sach set MaSach=?,TenSach=?,TomTat=?,SoTrang=?,DOnGia=?,NAMXUATBAN=?,"
+					+ "TACGIA=?,THELOAI=?,NHAXUATBAN=? where MaSach=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, s.getMASACH());
 			ps.setString(2, s.getTENSACH());
 			ps.setString(3, s.getTOMTAT());
 			ps.setInt(4, s.getSOTRANG());
-			ps.setDouble(5, s.getDONGIA());
+			ps.setInt(5, s.getDONGIA());
 			ps.setInt(6, s.getNAMXUATBAN());
 			ps.setString(7, s.getTACGIA());
 			ps.setString(8, s.getTHELOAI());
 			ps.setString(9, s.getNHAXUATBAN());
-			ps.execute();
-			ResultSet rs = ps.getGeneratedKeys();
-			int generatedKey = 0;
-			if (rs.next()) {
-				generatedKey = rs.getInt(1);
-			}
+			ps.setString(10, s.getMASACH());
+			
+			ps.executeUpdate();
 			ps.close();
-			cons.close();
-			return generatedKey;
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
+	@Override
+	public int Insert(Sach s) {
+		try {
+			Connection conn = SQLConnect.getConnection();
+			String sql = "Insert into Sach values(?,?,?,?,?,?,?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, s.getMASACH());
+			ps.setString(2, s.getTENSACH());
+			ps.setString(3, s.getTOMTAT());
+			ps.setInt(4, s.getSOTRANG());
+			ps.setInt(5, s.getDONGIA());
+			ps.setInt(6, s.getNAMXUATBAN());
+			ps.setString(7, s.getTACGIA());
+			ps.setString(8, s.getTHELOAI());
+			ps.setString(9, s.getNHAXUATBAN());
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

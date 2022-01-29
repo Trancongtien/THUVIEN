@@ -222,7 +222,7 @@ public class QuanLyTra extends JPanel {
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		QuanLyTraController controller = new QuanLyTraController(pnTable, txtFind);
-		controller.setDateToTable();
+		QuanLyTraController controller = new QuanLyTraController(pnTable, txtFind, txtSoSachTra, txtSoSachChuaTra, txtMaThe, txtMaThuThu, txtMaSach, btAdd, btDelete, btInsert, txtNgayTra);
+				controller.setDateToTable();
 	}
 }

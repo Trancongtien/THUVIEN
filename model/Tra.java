@@ -1,8 +1,10 @@
 package model;
 
-import java.util.*;
+import java.io.Serializable;
+import java.sql.*;
 
-public class Tra {
+public class Tra implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Date ngaytra;
 	private int sosachtra;
 	private int sosachchuatra;

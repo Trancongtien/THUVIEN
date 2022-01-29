@@ -216,7 +216,7 @@ public class QuanLyThuThu extends JPanel {
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-QuanLyThuThuController controller = new QuanLyThuThuController(pnTable, txtFind);
+QuanLyThuThuController controller = new QuanLyThuThuController(pnTable, txtFind, txtMaThuThu, txtHoDem, txtTen, txtGioiTinh, txtDiaChi, txtMaTK, btAdd, btDelete, btInsert);
 controller.setDateToTable();
 	}
 

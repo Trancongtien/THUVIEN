@@ -15,5 +15,13 @@ private DocGiaDAO docGiaDao=null;
 	public DocGiaServiceImpl() {
 		this.docGiaDao = new DocGiaDAOImpl();
 	}
+	@Override
+	public int Update(DocGia dg) {
+		return docGiaDao.Update(dg);
+	}
+	@Override
+	public int Insert(DocGia dg) {
+		return docGiaDao.Insert(dg);
+	}
 
 }

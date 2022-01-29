@@ -92,11 +92,11 @@ public class QuanLyThe extends JPanel {
 	        lblNewLabel_1 = new JLabel("Nhập ký tự muốn tìm :");
 	        lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
 	        
-	        JDateChooser dateChooser = new JDateChooser();
-	        dateChooser.setDateFormatString("dd-MM-yyyy");
+	        JDateChooser txtNgayBatDau = new JDateChooser();
+	        txtNgayBatDau.setDateFormatString("dd/MM/yyyy");
 	        
-	        JDateChooser dateChooser_1 = new JDateChooser();
-	        dateChooser_1.setDateFormatString("dd-MM-yyyy");
+	        JDateChooser txtNgayKetThuc = new JDateChooser();
+	        txtNgayKetThuc.setDateFormatString("dd/MM/yyyy");
 	        
 
 	        javax.swing.GroupLayout gl_pnView = new javax.swing.GroupLayout(pnView);
@@ -119,9 +119,9 @@ public class QuanLyThe extends JPanel {
 	        								.addComponent(lbNgayKetThuc, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 	        							.addPreferredGap(ComponentPlacement.UNRELATED)
 	        							.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
-	        								.addComponent(dateChooser_1, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+	        								.addComponent(txtNgayKetThuc, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
 	        								.addComponent(txtMaThe, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-	        								.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+	        								.addComponent(txtNgayBatDau, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
 	        							.addPreferredGap(ComponentPlacement.UNRELATED)
 	        							.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
 	        								.addComponent(lbMaDocGia, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
@@ -161,10 +161,10 @@ public class QuanLyThe extends JPanel {
 	        						.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
 	        							.addComponent(lbNgayBatDau)
 	        							.addComponent(lbGhiChu))
-	        						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+	        						.addComponent(txtNgayBatDau, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 	        					.addGap(18)
 	        					.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
-	        						.addComponent(dateChooser_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+	        						.addComponent(txtNgayKetThuc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 	        						.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
 	        							.addComponent(lbNgayKetThuc)
 	        							.addComponent(jLabel12))))
@@ -210,7 +210,7 @@ public class QuanLyThe extends JPanel {
 	                .addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 	        );
 	        
-	        QuanLyTheController controller = new QuanLyTheController(pnTable, txtFind);
+	        QuanLyTheController controller = new QuanLyTheController(pnTable, txtFind, txtMaThe, txtMaDocGia, txtGhiChu, btAdd, btDelete, btInsert, txtNgayBatDau, txtNgayKetThuc);
 	        controller.setDateToTable();
 	    }
 	}

@@ -1,10 +1,7 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 import model.Tra;
 
@@ -14,7 +11,7 @@ public class TraDAOImpl implements TraDAO {
 	public List<Tra> getList() {
 		Connection conn = SQLConnect.getConnection();
 		String sql = "Select *From Tra";
-		List<Tra> list= new ArrayList<>();
+		List<Tra> list= new Vector<Tra>();
 		try {
 			PreparedStatement ps =(PreparedStatement) conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -34,6 +31,56 @@ public class TraDAOImpl implements TraDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public int Update(Tra t) {
+		try {
+			Connection conn = SQLConnect.getConnection();
+			String sql = "Update tra set mathe=?,MaThuTHu=?,MaSach=?,Ngaytra=?,SoSachTra=?,SoSahChuaTra=? where MaThe=? and MaSach=? and MaThuThu=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, t.getMathe());
+			ps.setString(2, t.getMathuthu());
+			ps.setString(3, t.getMasach());
+			ps.setDate(4,(java.sql.Date) t.getNgaytra());
+			ps.setInt(5, t.getSosachtra());
+			ps.setInt(6, t.getSosachchuatra());
+			ps.setString(7, t.getMathe());
+			ps.setString(9, t.getMathuthu());
+			ps.setString(8, t.getMasach());
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int Insert(Tra t) {
+		try {
+			Connection conn = SQLConnect.getConnection();
+			String sql = "Insert into Tra values(?,?,?,?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, t.getMathe());
+			ps.setString(2, t.getMathuthu());
+			ps.setString(3, t.getMasach());
+			ps.setDate(4,(java.sql.Date) t.getNgaytra());
+			ps.setInt(5, t.getSosachtra());
+			ps.setInt(6, t.getSosachchuatra());
+		
+			ps.executeUpdate();
+			ps.close();
+			conn.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 }

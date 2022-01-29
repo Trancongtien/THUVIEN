@@ -8,7 +8,7 @@ public class SQLConnect {
 		Connection connection = null;
 		try {
 			String connectionUrl = "jdbc:sqlserver://DESKTOP-PLKGNUH\\SQLEXPRESS:1433;"
-					+ "databaseName=QUANLITHUVIEN;user=sa;password=123";
+					+ "databaseName=QUANLITHUVIEN1;user=sa;password=123";
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			connection = DriverManager.getConnection(connectionUrl);
 
