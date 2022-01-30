@@ -16,7 +16,6 @@ public class ThuThu implements Serializable {
 	}
 
 	public ThuThu(String mathuthu, String hodem, String ten, String diachi, boolean gioitinh, String matk) {
-		super();
 		this.mathuthu = mathuthu;
 		this.hodem = hodem;
 		this.ten = ten;

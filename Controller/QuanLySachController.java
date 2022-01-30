@@ -10,7 +10,8 @@ import java.sql.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-import java.util.*;
+import java.util.Vector;
+import java.util.Date;
 import javax.swing.table.*;
 
 import dao.SQLConnect;
@@ -57,14 +58,15 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 		this.txtNamXB = txtNamXB;
 		this.sachservice = new SachServiceImpl();
 	}
-
+	private Sach s=null;
 	private DefaultTableModel model;
 	private JTable table;
 	JScrollPane scollPane;
 	Vector<Sach> listItem = null;
 
 	public void setDateToTabel() {
-		reload();
+		listItem = (Vector<Sach>) sachservice.getList();
+
 		model = new ClassTableModel().setTableSach(listItem, COLUMNS);
 		table = new JTable(model);
 		rowSorter = new TableRowSorter<>(table.getModel());
@@ -118,36 +120,39 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 		btDelete.addActionListener(this);
 	}
 
-	public void reload() {
-		listItem = (Vector<Sach>) sachservice.getList();
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
-			
+			s= new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(), Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()), Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(), txtNhaXuatBan.getText());
+			sachservice.Insert(s);
+			setDateToTabel();
+	
 		} else if (e.getSource() == brInsert) {
-			
+			s= new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(), Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()), Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(), txtNhaXuatBan.getText());
+			sachservice.Update(s);
+			setDateToTabel();
 		} else if (e.getSource() == btDelete) {
 			String sql = "Delete from Sach where MaSach=\'" + txtMaSach.getText() + "\'";
 			try {
 				Connection conn = SQLConnect.getConnection();
 				PreparedStatement prs = conn.prepareStatement(sql);
 				prs.executeUpdate();
-				reload();
 				setDateToTabel();
-				model.fireTableDataChanged();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 
 		}
+		
+	    }
+	public java.sql.Date covertDateToDateSql(Date d) {
+        return new java.sql.Date(d.getTime());
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int selectedRowIndex = table.getSelectedRow();
-		   selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+		selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
 		Sach st = (Sach) listItem.elementAt(selectedRowIndex);
 		txtMaSach.setText(st.getMASACH());
 		txtTenSach.setText(st.getTENSACH());

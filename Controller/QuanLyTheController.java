@@ -11,9 +11,8 @@ import dao.SQLConnect;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.Vector;
-
+import java.util.Date;
+import java.util.*;
 import service.*;
 import utility.ClassTableModel;
 import model.*;
@@ -50,8 +49,7 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 	private Vector<TheThuVien> listItem;
 	private DefaultTableModel model;
 	private JTable table;
-	private SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
-
+	private TheThuVien ttt=null;
 	public void setDateToTable() {
 		listItem = (Vector<TheThuVien>) theservice.getList();
 		model = new ClassTableModel().setTableThe(listItem, COLUMNS);
@@ -141,7 +139,9 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
-		
+			ttt= new TheThuVien(txtMathe.getText(),covertDateToDateSql((Date) txtNgayBatDau.getDate()), covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(), txtMaDocGia.getText());
+			theservice.Insert(ttt);
+			setDateToTable();
 		} else if (e.getSource() == btDelete) {
 			String sql = "Delete from TheThuVien where MaThe=\'" + txtMathe.getText() + "\'";
 			try {
@@ -154,9 +154,14 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 				e2.printStackTrace();
 			}
 		} else if (e.getSource() == btInsert) {
-			
+			ttt= new TheThuVien(txtMathe.getText(),covertDateToDateSql((Date) txtNgayBatDau.getDate()), covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(), txtMaDocGia.getText());
+			theservice.Update(ttt);
+			setDateToTable();
 
 		}
 	}
+	public java.sql.Date covertDateToDateSql(Date d) {
+        return new java.sql.Date(d.getTime());
+    }
 
 }

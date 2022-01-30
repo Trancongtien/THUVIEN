@@ -1,29 +1,24 @@
 package Controller;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.*;
+
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import javax.swing.event.*;
+import javax.swing.table.*;
 
 import com.toedter.calendar.JDateChooser;
 
-import dao.SQLConnect;
+import dao.*;
 import model.*;
+
+import java.util.Vector;
+import java.util.Date;
+
 import service.*;
-import utility.*;
+import utility.ClassTableModel;
 
 public class QuanLyTraController extends JFrame implements MouseListener, ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -53,7 +48,7 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 		this.txtNgayTra = txtNgayTra;
 		this.traservice = new TraServiceImpl();
 	}
-
+private Tra t=null;
 	private DefaultTableModel model;
 	private JTable table;
 	private Vector<Tra> listItem = null;
@@ -114,9 +109,15 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
+			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()),Integer.parseInt(txtSoSachChuaTra.getText()));
 			
+			 traservice.Insert(t);
+			 setDateToTable();
 		} else if (e.getSource() == btInsert) {
-			
+			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()),Integer.parseInt(txtSoSachChuaTra.getText()));
+				
+			 traservice.Update(t);
+			 setDateToTable();
 
 		} else if (e.getSource() == btDelete) {
 			String sql = "Delete from Tra where NgayTra=\'" +ft.format( txtNgayTra.getDate()) + "\'";
@@ -170,5 +171,7 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 		// TODO Auto-generated method stub
 
 	}
-
+	public java.sql.Date covertDateToDateSql(Date d) {
+        return new java.sql.Date(d.getTime());
 }
+	}

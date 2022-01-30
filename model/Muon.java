@@ -4,48 +4,30 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Muon implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	private Date ngaymuon;
-	private int sosachmuon;
-	private String mathe;
+	private String Mathe;
 	private String mathuthu;
-	private String masach;
+	private String maSach;
+	private Date NgayMuon;
+	private int SoSachMuon;
 
 	public Muon() {
-
 	}
 
-	public Muon(Date ngaymuon, int sosachmuon, String mathe, String mathuthu, String masach) {
-		this.ngaymuon = ngaymuon;
-		this.sosachmuon = sosachmuon;
-		this.mathe = mathe;
+	public Muon(String mathe, String mathuthu, String maSach, Date ngayMuon, int soSachMuon) {
+		Mathe = mathe;
 		this.mathuthu = mathuthu;
-		this.masach = masach;
-	}
-
-	public Date getNgaymuon() {
-		return ngaymuon;
-	}
-
-	public void setNgaymuon(Date ngaymuon) {
-		this.ngaymuon = ngaymuon;
-	}
-
-	public int getSosachmuon() {
-		return sosachmuon;
-	}
-
-	public void setSosachmuon(int sosachmuon) {
-		this.sosachmuon = sosachmuon;
+		this.maSach = maSach;
+		NgayMuon = ngayMuon;
+		SoSachMuon = soSachMuon;
 	}
 
 	public String getMathe() {
-		return mathe;
+		return Mathe;
 	}
 
 	public void setMathe(String mathe) {
-		this.mathe = mathe;
+		Mathe = mathe;
 	}
 
 	public String getMathuthu() {
@@ -56,12 +38,28 @@ public class Muon implements Serializable {
 		this.mathuthu = mathuthu;
 	}
 
-	public String getMasach() {
-		return masach;
+	public String getMaSach() {
+		return maSach;
 	}
 
-	public void setMasach(String masach) {
-		this.masach = masach;
+	public void setMaSach(String maSach) {
+		this.maSach = maSach;
+	}
+
+	public Date getNgayMuon() {
+		return NgayMuon;
+	}
+
+	public void setNgayMuon(Date ngayMuon) {
+		NgayMuon = ngayMuon;
+	}
+
+	public int getSoSachMuon() {
+		return SoSachMuon;
+	}
+
+	public void setSoSachMuon(int soSachMuon) {
+		SoSachMuon = soSachMuon;
 	}
 
 }

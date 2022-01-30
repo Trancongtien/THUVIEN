@@ -1,8 +1,8 @@
 package dao;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
-
 import model.Tra;
 
 public class TraDAOImpl implements TraDAO {
@@ -37,12 +37,12 @@ public class TraDAOImpl implements TraDAO {
 	public int Update(Tra t) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Update tra set mathe=?,MaThuTHu=?,MaSach=?,Ngaytra=?,SoSachTra=?,SoSahChuaTra=? where MaThe=? and MaSach=? and MaThuThu=?";
+			String sql = "Update tra set mathe=?,MaThuTHu=?,MaSach=?,Ngaytra=?,SoSachTra=?,SoSachChuaTra=? where MaThe=? and MaSach=? and MaThuThu=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, t.getMathe());
 			ps.setString(2, t.getMathuthu());
 			ps.setString(3, t.getMasach());
-			ps.setDate(4,(java.sql.Date) t.getNgaytra());
+			ps.setDate(4,(Date) t.getNgaytra());
 			ps.setInt(5, t.getSosachtra());
 			ps.setInt(6, t.getSosachchuatra());
 			ps.setString(7, t.getMathe());
@@ -68,7 +68,7 @@ public class TraDAOImpl implements TraDAO {
 			ps.setString(1, t.getMathe());
 			ps.setString(2, t.getMathuthu());
 			ps.setString(3, t.getMasach());
-			ps.setDate(4,(java.sql.Date) t.getNgaytra());
+			ps.setDate(4,(Date) t.getNgaytra());
 			ps.setInt(5, t.getSosachtra());
 			ps.setInt(6, t.getSosachchuatra());
 		

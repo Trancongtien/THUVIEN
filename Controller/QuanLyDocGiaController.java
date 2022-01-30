@@ -15,7 +15,8 @@ import dao.SQLConnect;
 import model.DocGia;
 
 import java.util.Vector;
-import java.sql.Date;
+import java.util.Date;
+
 import service.*;
 import utility.ClassTableModel;
 
@@ -50,10 +51,12 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 		this.docgiaservice = new DocGiaServiceImpl();
 
 	}
-	private DocGia dg=null;
+
+	private DocGia dg = null;
 	private Vector<DocGia> listItem;
 	private DefaultTableModel model;
 	private JTable table;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	public void setDateToTabel() {
 		listItem = (Vector<DocGia>) docgiaservice.getList();
@@ -97,9 +100,39 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 		table.setRowHeight(50);
 		table.validate();
 		table.repaint();
-		btAdd.addActionListener(this);
-		btInsert.addActionListener(this);
-		btDelete.addActionListener(this);
+		btAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
+						covertDateToDateSql((Date) txtNgaySinh.getDate()),
+						txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
+						txtMaloaidocgia.getText());
+				docgiaservice.Insert(dg);
+				setDateToTabel();
+			}
+		});
+		btInsert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
+						covertDateToDateSql((Date) txtNgaySinh.getDate()),
+						txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
+						txtMaloaidocgia.getText());
+				docgiaservice.Update(dg);
+				setDateToTabel();
+			}
+		});
+		btDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sql = "Delete from DocGia where MaDocGia=\'" + txtMaDocGia.getText() + "\'";
+				try {
+					Connection conn = SQLConnect.getConnection();
+					PreparedStatement ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
+					setDateToTabel();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
 
 		JScrollPane scollPane = new JScrollPane();
 		scollPane.getViewport().add(table);
@@ -114,12 +147,13 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		  int selectedRowIndex = table.getSelectedRow();
-		   selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
-		 dg = (DocGia) listItem.elementAt(selectedRowIndex);
+		int selectedRowIndex = table.getSelectedRow();
+		selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+		dg = (DocGia) listItem.elementAt(selectedRowIndex);
 		txtMaDocGia.setText(dg.getMaDocGia());
 		txtHodem.setText(dg.getHodem());
 		txtTen.setText(dg.getTen());
+
 		txtNgaySinh.setDate(dg.getNgaysinh());
 		txtDiaChi.setText(dg.getDiachi());
 		txtSDT.setText(String.valueOf(dg.getSdt()));
@@ -154,29 +188,10 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btAdd) {
-			
-//dg= new DocGia();
-//dg.setMaDocGia(txtMaDocGia.getText());
-//docgiaservice.Insert(dg);
-			setDateToTabel();
-		} else if (e.getSource() == btDelete) {
-			String sql = "Delete from DocGia where MaDocGia=\'" + txtMaDocGia.getText() + "\'";
-			try {
-				Connection conn = SQLConnect.getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.executeUpdate();
-				setDateToTabel();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		} else if (e.getSource() == btInsert) {
-			dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(), (Date) txtNgaySinh.getDate(), txtGioitinh.getText().equals("Nam")?true:false, txtSDT.getText(), txtDiaChi.getText(), txtMaloaidocgia.getText());
-			docgiaservice.Update(dg);
-			setDateToTabel();
-
-		}
 
 	}
 
+	public java.sql.Date covertDateToDateSql(Date d) {
+		return new java.sql.Date(d.getTime());
+	}
 }

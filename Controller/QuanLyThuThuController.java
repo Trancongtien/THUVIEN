@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.*;
-
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
@@ -14,11 +13,11 @@ import model.*;
 import service.*;
 import utility.ClassTableModel;
 
-public class QuanLyThuThuController implements MouseListener, ActionListener {
+public class QuanLyThuThuController implements MouseListener {
 	private JPanel pnView;
 	private JTextField txtSearch, txtMaThuThu, txtHoDem, txtTen, txtGioiTinh, txtDiaChi, txtMaTK;
 	private JButton btAdd, btDelete, btInsert;
-	private final String[] COLUMNS = { "Mã Thủ Thư", "ST", "Giới Tính", "Họ Đệm", "Tên", "Địa Chỉ", "Mã Tài Khoản" };
+	private final String[] COLUMNS = { "Mã Thủ Thư", "STT", "Giới Tính", "Họ Đệm", "Tên", "Địa Chỉ", "Mã Tài Khoản" };
 	private ThuThuService thuthuservice = null;
 	private TableRowSorter<TableModel> rowSorter = null;
 
@@ -39,6 +38,7 @@ public class QuanLyThuThuController implements MouseListener, ActionListener {
 		this.thuthuservice = new ThuThuServiceImpl();
 	}
 
+	private ThuThu tt = null;
 	private Vector<ThuThu> listItem;
 	private DefaultTableModel model;
 	private JTable table;
@@ -76,12 +76,7 @@ public class QuanLyThuThuController implements MouseListener, ActionListener {
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				String text = txtSearch.getText();
-				if (text.trim().length() == 0) {
-					rowSorter.setRowFilter(null);
-				} else {
-					rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-				}
+
 			}
 		});
 		table.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
@@ -89,9 +84,50 @@ public class QuanLyThuThuController implements MouseListener, ActionListener {
 		table.setRowHeight(50);
 		table.validate();
 		table.repaint();
-		btAdd.addActionListener(this);
-		btDelete.addActionListener(this);
-		btInsert.addActionListener(this);
+		btAdd.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tt = new ThuThu();
+				tt.setDiachi(txtDiaChi.getText());
+				tt.setGioitinh(txtGioiTinh.getText().equals("Nam") ? true : false);
+				tt.setHodem(txtHoDem.getText());
+				tt.setTen(txtTen.getText());
+				tt.setMathuthu(txtMaThuThu.getText());
+				tt.setMatk(txtMaTK.getText());
+				thuthuservice.Insert(tt);
+				setDateToTable();
+
+			}
+		});
+		btDelete.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String sql = "Delete from ThuThu where MaThuThu=\'" + txtMaThuThu.getText() + "\'";
+				try {
+					Connection conn = SQLConnect.getConnection();
+					PreparedStatement ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
+
+					setDateToTable();
+
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
+		btInsert.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tt = new ThuThu(txtMaThuThu.getText(), txtHoDem.getText(), txtTen.getText(), txtDiaChi.getText(),
+						txtGioiTinh.getText().equals("Nam") ? true : false, txtMaTK.getText());
+				thuthuservice.Update(tt);
+				setDateToTable();
+
+			}
+		});
 		JScrollPane scollPane = new JScrollPane();
 		scollPane.getViewport().add(table);
 		scollPane.setPreferredSize(new Dimension(1300, 400));
@@ -103,37 +139,14 @@ public class QuanLyThuThuController implements MouseListener, ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btAdd) {
-			
-		} else if (e.getSource() == btDelete) {
-			String sql = "Delete from ThuThu where MaThuThu=\'" + txtMaThuThu.getText() + "\'";
-			try {
-				Connection conn = SQLConnect.getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.executeUpdate();
-
-				setDateToTable();
-				model.fireTableDataChanged();
-
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		} else if (e.getSource() == btInsert) {
-			
-
-		}
-	}
-
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		int selectedRowIndex = table.getSelectedRow();
-		   selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
-		ThuThu tt = (ThuThu) listItem.elementAt(selectedRowIndex);
+		selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+		tt = (ThuThu) listItem.elementAt(selectedRowIndex);
 		txtMaThuThu.setText(tt.getMathuthu());
 		txtHoDem.setText(tt.getHodem());
 		txtTen.setText(tt.getTen());
-		txtGioiTinh.setText(tt.isGioitinh() == true ? "Nam" : "Nữ" );
+		txtGioiTinh.setText(tt.isGioitinh() == true ? "Nam" : "Nữ");
 		txtDiaChi.setText(tt.getDiachi());
 		txtMaTK.setText(tt.getMatk());
 	}

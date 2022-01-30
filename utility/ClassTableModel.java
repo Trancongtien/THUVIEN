@@ -83,11 +83,11 @@ public class ClassTableModel {
 			 Muon m = listitem.get(i);
 			obj = new Object[columns];
 			obj[0]=i+1;
-			obj[1] = m.getNgaymuon();
-			obj[2] = m.getSosachmuon();
-			obj[3] = m.getMasach();
-			obj[4] = m.getMathe();
-			obj[5] = m.getMathuthu();
+			obj[1] = m.getMathe();
+			obj[2] = m.getMathuthu();
+			obj[3] = m.getMaSach();
+			obj[4] = m.getNgayMuon();
+			obj[5] = m.getSoSachMuon();
 			dtm.addRow(obj);
 		}
 		}

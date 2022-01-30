@@ -109,8 +109,9 @@ public class QuanLyTra extends JPanel {
 		lblNewLabel = new JLabel("Nhập kí tự mà bạn muốn tìm : ");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		
-		JDateChooser txtNgayTra = new JDateChooser();
-		txtNgayTra.setDateFormatString("dd-MM-yyyy");
+		JDateChooser txtNgayTra =  new com.toedter.calendar.JDateChooser();
+		txtNgayTra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+		txtNgayTra.setDateFormatString("dd/MM/yyyy");
 
 		javax.swing.GroupLayout gl_pnQuery = new javax.swing.GroupLayout(pnQuery);
 		gl_pnQuery.setHorizontalGroup(

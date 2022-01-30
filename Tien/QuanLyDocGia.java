@@ -7,6 +7,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import Controller.QuanLyDocGiaController;
 
 import java.awt.Font;
+
 import com.toedter.calendar.JDateChooser;
 
 public class QuanLyDocGia extends JPanel {
@@ -127,8 +128,9 @@ public class QuanLyDocGia extends JPanel {
 		lblNewLabel = new JLabel("Nhập ký tự mà bạn muốn tìm : ");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		
-		JDateChooser txtNgaySinh = new JDateChooser();
-		txtNgaySinh.setDateFormatString("dd/MM/yyyy\r\n");
+		JDateChooser txtNgaySinh =  new com.toedter.calendar.JDateChooser();
+		txtNgaySinh.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+		 txtNgaySinh.setDateFormatString("dd/MM/yyyy");
 
 		javax.swing.GroupLayout gl_pnQuery = new javax.swing.GroupLayout(pnQuery);
 		gl_pnQuery.setHorizontalGroup(

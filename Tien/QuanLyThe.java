@@ -92,12 +92,14 @@ public class QuanLyThe extends JPanel {
 	        lblNewLabel_1 = new JLabel("Nhập ký tự muốn tìm :");
 	        lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
 	        
-	        JDateChooser txtNgayBatDau = new JDateChooser();
+	        
+	        JDateChooser txtNgayBatDau =  new com.toedter.calendar.JDateChooser();
+	        txtNgayBatDau.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 	        txtNgayBatDau.setDateFormatString("dd/MM/yyyy");
 	        
-	        JDateChooser txtNgayKetThuc = new JDateChooser();
+	        JDateChooser txtNgayKetThuc =  new com.toedter.calendar.JDateChooser();
+	        txtNgayKetThuc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 	        txtNgayKetThuc.setDateFormatString("dd/MM/yyyy");
-	        
 
 	        javax.swing.GroupLayout gl_pnView = new javax.swing.GroupLayout(pnView);
 	        gl_pnView.setHorizontalGroup(

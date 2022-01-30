@@ -99,7 +99,8 @@ public class QuanLyMuon extends JPanel {
 		lblNewLabel = new JLabel("Nhập kí tự mà bạn muốn tìm :");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		
-		JDateChooser txtNgayMuon = new JDateChooser();
+		JDateChooser txtNgayMuon =  new com.toedter.calendar.JDateChooser();
+		txtNgayMuon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		txtNgayMuon.setDateFormatString("dd/MM/yyyy");
 
 		javax.swing.GroupLayout gl_pnQuery = new javax.swing.GroupLayout(pnQuery);
@@ -199,7 +200,7 @@ public class QuanLyMuon extends JPanel {
 						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 	
-	QuanLyMuonController controller = new QuanLyMuonController(pnTable, txtFind, btAdd, btInsert, btDelete, txtSoSachMuon, txtMaThuThu, txtMaThe, txtMaSach, txtNgayMuon);
+	QuanLyMuonController controller = new QuanLyMuonController(pnTable, txtFind, txtMaThe, txtMaThuThu, txtMaSach, txtSoSachMuon, btAdd, btDelete, btInsert, txtNgayMuon);
 			controller.setDateToTable();
 			
 	}

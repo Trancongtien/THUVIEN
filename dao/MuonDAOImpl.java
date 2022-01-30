@@ -1,32 +1,28 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Vector;
-
-
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 import model.Muon;
 
 public class MuonDAOImpl implements MuonDAO {
-
 	@Override
 	public List<Muon> getList() {
 		Connection conn = (Connection) SQLConnect.getConnection();
-		String sql = "Select * from Muon";
+		String sql = "Select*from Muon";
 		List<Muon> list = new Vector<Muon>();
 		try {
 			PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Muon m = new Muon();
-				m.setNgaymuon(rs.getDate("NgayMuon"));
-				m.setSosachmuon(rs.getInt("SoSachMuon"));
-				m.setMathuthu(rs.getString("MaThuThu"));
+				m.setMaSach(rs.getString("MaSach"));
 				m.setMathe(rs.getString("MaThe"));
-				m.setMasach(rs.getString("MaSach"));
+				m.setMathuthu(rs.getString("MaThuThu"));
+				m.setNgayMuon(rs.getDate("NgayMuon"));
+				m.setSoSachMuon(rs.getInt("SoSachMuon"));
 				list.add(m);
+
 			}
 			ps.close();
 			conn.close();
@@ -37,16 +33,19 @@ public class MuonDAOImpl implements MuonDAO {
 	}
 
 	@Override
-	public int Insert(Muon m) {
+	public int Update(Muon m) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Insert into Muon values(?,?,?,?,?)";
+			String sql = "Update Muon set MaThe=?,MaThuTHu=?,MaSach=?,NgayMuon=?,SoSachMuon=? where MaThe=? and MaThuThu=? and MaSach=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, m.getMathe());
 			ps.setString(2, m.getMathuthu());
-			ps.setString(3, m.getMasach());
-			ps.setDate(4, (java.sql.Date) m.getNgaymuon());
-			ps.setInt(5, m.getSosachmuon());
+			ps.setString(3, m.getMaSach());
+			ps.setDate(4, (Date) m.getNgayMuon());
+			ps.setInt(5, m.getSoSachMuon());
+			ps.setString(6, m.getMathe());
+			ps.setString(7, m.getMathuthu());
+			ps.setString(8, m.getMaSach());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -57,20 +56,16 @@ public class MuonDAOImpl implements MuonDAO {
 	}
 
 	@Override
-	public int Update(Muon m) {
+	public int Insert(Muon m) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "update Muon set MaThe=?,MaThuTHu=?"
-					+ ",MaSach=?,NgayMuon=?,SoSachMuon=? where NgayMuon=? and MaThe=? and MaSach=?";
+			String sql = "Insert into Muon values(?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, m.getMathe());
 			ps.setString(2, m.getMathuthu());
-			ps.setString(3, m.getMasach());
-			ps.setDate(4,  (java.sql.Date) m.getNgaymuon());
-			ps.setInt(5, m.getSosachmuon());
-			ps.setDate(6, (java.sql.Date) m.getNgaymuon());
-			ps.setString(7, m.getMathe());
-			ps.setString(8, m.getMasach());
+			ps.setString(3, m.getMaSach());
+			ps.setDate(4, (Date) m.getNgayMuon());
+			ps.setInt(5, m.getSoSachMuon());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
