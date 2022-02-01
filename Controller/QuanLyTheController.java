@@ -139,10 +139,19 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
+			if(txtMathe.getText().equals("")||txtNgayBatDau.getDate()==null||txtNgayKetThuc.getDate()==null||txtGhiChu.getText().equals("")||txtMaDocGia.getText().equals("")) {
+				JOptionPane.showMessageDialog(pnView, "Vui lòng Nhập đầy đủ thông tin");
+
+			}else {
 			ttt= new TheThuVien(txtMathe.getText(),covertDateToDateSql((Date) txtNgayBatDau.getDate()), covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(), txtMaDocGia.getText());
 			theservice.Insert(ttt);
 			setDateToTable();
+			}
 		} else if (e.getSource() == btDelete) {
+			if(txtMathe.getText().equals("")||txtNgayBatDau.getDate()==null||txtNgayKetThuc.getDate()==null||txtGhiChu.getText().equals("")||txtMaDocGia.getText().equals("")) {
+				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+
+			}else {
 			String sql = "Delete from TheThuVien where MaThe=\'" + txtMathe.getText() + "\'";
 			try {
 				Connection conn = SQLConnect.getConnection();
@@ -153,11 +162,16 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 
 				e2.printStackTrace();
 			}
+			}
 		} else if (e.getSource() == btInsert) {
+			if(txtMathe.getText().equals("")||txtNgayBatDau.getDate()==null||txtNgayKetThuc.getDate()==null||txtGhiChu.getText().equals("")||txtMaDocGia.getText().equals("")) {
+				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+
+			}else {
 			ttt= new TheThuVien(txtMathe.getText(),covertDateToDateSql((Date) txtNgayBatDau.getDate()), covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(), txtMaDocGia.getText());
 			theservice.Update(ttt);
 			setDateToTable();
-
+			}
 		}
 	}
 	public java.sql.Date covertDateToDateSql(Date d) {

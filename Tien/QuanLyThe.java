@@ -131,7 +131,7 @@ public class QuanLyThe extends JPanel {
 	        								.addComponent(jLabel12, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))))
 	        					.addPreferredGap(ComponentPlacement.RELATED)
 	        					.addGroup(gl_pnView.createParallelGroup(Alignment.LEADING)
-	        						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+	        						.addComponent(jScrollPane1)
 	        						.addComponent(txtMaDocGia, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))
 	        				.addGroup(gl_pnView.createSequentialGroup()
 	        					.addGap(165)

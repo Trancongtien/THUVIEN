@@ -1,8 +1,8 @@
 package dao;
 
+import java.util.List;
+import java.util.Vector;
 import java.sql.*;
-import java.util.*;
-
 import model.ThuThu;
 
 public class ThuThuDAOImpl implements ThuThuDAO {
@@ -13,43 +13,40 @@ public class ThuThuDAOImpl implements ThuThuDAO {
 		String sql = "Select *from ThuThu";
 		List<ThuThu> list = new Vector<ThuThu>();
 		try {
-			PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				ThuThu tt = new ThuThu();
-				tt.setMathuthu(rs.getString("MaThuThu"));
-				tt.setHodem(rs.getString("HoDem"));
-				tt.setTen(rs.getString("Ten"));
-				tt.setGioitinh(rs.getBoolean("GioiTinh"));
-				tt.setDiachi(rs.getString("DiaChi"));
-				tt.setMatk(rs.getString("MaTK"));
-				list.add(tt);
+				ThuThu t = new ThuThu();
+				t.setMaThuThu(rs.getString("MaThuThu"));
+				t.setHoDem(rs.getString("HoDem"));
+				t.setTen(rs.getString("Ten"));
+				t.setGioiTinh(rs.getBoolean("GioiTinh"));
+				t.setDiaChi(rs.getString("DiaChi"));
+				t.setMaTk(rs.getString("MaTK"));
+				list.add(t);
 			}
 			ps.close();
 			conn.close();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return list;
 	}
 
 	@Override
-	public int Update(ThuThu tt) {
+	public int Update(ThuThu t) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Update ThuTHu set MathuThu=?,HoDem=?,Ten=?,GioiTinh=?,DiaChi=?,MaTK=? where MathuThu=? and MaTK=?";
+			String sql = "Update ThuThu set MaThuThu=?,HoDem=?,Ten=?,GioiTinh=?,DiaChi=?,MaTk=? where MaThuThu=? or MaTK=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, tt.getMathuthu());
-			ps.setString(2, tt.getHodem());
-			ps.setString(3, tt.getTen());
-			ps.setBoolean(4, tt.isGioitinh());
-			ps.setString(5, tt.getDiachi());
-			ps.setString(6, tt.getMatk());
-			ps.setString(7, tt.getMathuthu());
-			ps.setString(8, tt.getMatk());
-
+			ps.setString(1, t.getMaThuThu());
+			ps.setString(2, t.getHoDem());
+			ps.setString(3, t.getTen());
+			ps.setBoolean(4, t.isGioiTinh());
+			ps.setString(5, t.getDiaChi());
+			ps.setString(6, t.getMaTk());
+			ps.setString(7, t.getMaThuThu());
+			ps.setString(8, t.getMaTk());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -60,24 +57,23 @@ public class ThuThuDAOImpl implements ThuThuDAO {
 	}
 
 	@Override
-	public int Insert(ThuThu tt) {
+	public int Insert(ThuThu t) {
 		try {
-			Connection conn = SQLConnect.getConnection();
-			String sql = "Insert into Tra values(?,?,?,?,?,?)";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, tt.getMathuthu());
-			ps.setString(2, tt.getHodem());
-			ps.setString(3, tt.getTen());
-			ps.setBoolean(4, tt.isGioitinh());
-			ps.setString(5, tt.getDiachi());
-			ps.setString(6, tt.getMatk());
+		Connection conn = SQLConnect.getConnection();
+		String sql ="insert into ThuThu values(?,?,?,?,?,?)";
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ps.setString(1, t.getMaThuThu());
+		ps.setString(2, t.getHoDem());
+		ps.setString(3, t.getTen());
+		ps.setBoolean(4, t.isGioiTinh());
+		ps.setString(5, t.getDiaChi());
+		ps.setString(6, t.getMaTk());
+		ps.executeUpdate();
+		ps.close();
+		conn.close();
+		}catch (Exception e) {
 
-			ps.execute();
-			ps.close();
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		e.printStackTrace();}
 		return 0;
 	}
 

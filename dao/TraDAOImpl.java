@@ -19,7 +19,7 @@ public class TraDAOImpl implements TraDAO {
 				Tra t= new Tra();
 				t.setNgaytra(rs.getDate("NgayTra"));
 				t.setSosachtra(rs.getInt("SoSachTra"));
-				t.setSosachtra(rs.getInt("SoSachChuaTra"));
+				t.setSosachchuatra(rs.getInt("SoSachChuaTra"));
 				t.setMathe(rs.getString("MaThe"));				
 				t.setMathuthu(rs.getString("MaThuThu"));
 				t.setMasach(rs.getString("MaSach"));
@@ -37,7 +37,7 @@ public class TraDAOImpl implements TraDAO {
 	public int Update(Tra t) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Update tra set mathe=?,MaThuTHu=?,MaSach=?,Ngaytra=?,SoSachTra=?,SoSachChuaTra=? where MaThe=? and MaSach=? and MaThuThu=?";
+			String sql = "Update Tra set mathe=?,MaThuTHu=?,MaSach=?,Ngaytra=?,SOSACHTRA=?,SOSACHCHUATRA=? where MaThe=? and MaSach=? and MaThuThu=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, t.getMathe());
 			ps.setString(2, t.getMathuthu());
@@ -46,8 +46,8 @@ public class TraDAOImpl implements TraDAO {
 			ps.setInt(5, t.getSosachtra());
 			ps.setInt(6, t.getSosachchuatra());
 			ps.setString(7, t.getMathe());
-			ps.setString(9, t.getMathuthu());
 			ps.setString(8, t.getMasach());
+			ps.setString(9, t.getMathuthu());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();

@@ -11,7 +11,7 @@ public class TrangChu extends JPanel {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.GREEN);
+		panel.setBackground(Color.LIGHT_GRAY);
 		add(panel);
 
 	}

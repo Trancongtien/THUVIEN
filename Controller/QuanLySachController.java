@@ -123,15 +123,28 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
+			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
+				JOptionPane.showMessageDialog(jpnView, "Vui lòng nhập đầy đủ thông tin");
+
+			}else {
 			s= new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(), Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()), Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(), txtNhaXuatBan.getText());
 			sachservice.Insert(s);
 			setDateToTabel();
-	
+			}
 		} else if (e.getSource() == brInsert) {
+			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
+				JOptionPane.showMessageDialog(jpnView, "Vui lòng chọn đầy đủ thông tin");
+
+			}else {
 			s= new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(), Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()), Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(), txtNhaXuatBan.getText());
 			sachservice.Update(s);
 			setDateToTabel();
+			}
 		} else if (e.getSource() == btDelete) {
+			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
+				JOptionPane.showMessageDialog(jpnView, "Vui lòng chọn đầy đủ thông tin");
+
+			}else {
 			String sql = "Delete from Sach where MaSach=\'" + txtMaSach.getText() + "\'";
 			try {
 				Connection conn = SQLConnect.getConnection();
@@ -142,6 +155,7 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 				e1.printStackTrace();
 			}
 
+		}
 		}
 		
 	    }

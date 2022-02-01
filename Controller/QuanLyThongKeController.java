@@ -54,13 +54,11 @@ public class QuanLyThongKeController {
 		if (listItem != null) {
 			for (Sach s : listItem) {
 				priDataset.setValue(s.getTHELOAI(), Double.parseDouble(s.getTENSACH()));
-
 			}
 		}
 		JFreeChart chart = ChartFactory.createPieChart("Thong Ke", priDataset, true, true, true);
 
 		ChartPanel plot = new ChartPanel(chart);
-
 //    plot.setPreferredSize(new Dimension(pnItem.getWidth(), 321));
 
 		pnItem.removeAll();

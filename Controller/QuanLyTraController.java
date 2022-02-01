@@ -27,8 +27,8 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 	private JButton btAdd, btDelete, btInsert;
 	private JDateChooser txtNgayTra;
 
-	private final String[] COLUMNS = { "STT", "Ngày Trả", "Số Sách Trả", "Số Sách chưa trả", "Mã Thẻ", "Mã Thủ Thư",
-			"Mã Sách" };
+	private final String[] COLUMNS = { "STT","Mã Thẻ", "Mã Thủ Thư",
+			"Mã Sách", "Ngày Trả", "Số Sách Trả", "Số Sách chưa trả"  };
 	private TraService traservice = null;
 	private TableRowSorter<TableModel> rowSorter = null;
 
@@ -109,18 +109,29 @@ private Tra t=null;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
+			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")||txtSoSachChuaTra.getText().equals("")) {
+				JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
+			}else {
 			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()),Integer.parseInt(txtSoSachChuaTra.getText()));
-			
+				
 			 traservice.Insert(t);
 			 setDateToTable();
+			}
 		} else if (e.getSource() == btInsert) {
+			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")||txtSoSachChuaTra.getText().equals("")) {
+				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+			}else {
 			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()),Integer.parseInt(txtSoSachChuaTra.getText()));
 				
 			 traservice.Update(t);
 			 setDateToTable();
+			}
 
 		} else if (e.getSource() == btDelete) {
-			String sql = "Delete from Tra where NgayTra=\'" +ft.format( txtNgayTra.getDate()) + "\'";
+			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")||txtSoSachChuaTra.getText().equals("")) {
+				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+			}else {
+			String sql = "Delete from Tra where NgayTra=\'" + covertDateToDateSql(txtNgayTra.getDate()) + "\'";
 			try {
 				Connection conn = SQLConnect.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
@@ -129,6 +140,7 @@ private Tra t=null;
 				model.fireTableDataChanged();
 			} catch (Exception e2) {
 				e2.printStackTrace();
+			}
 			}
 
 		}

@@ -38,9 +38,9 @@ public class DangNhapDia extends JDialog {
         lbpass.setIcon(new ImageIcon(DangNhapDia.class.getResource("/Image/icons8_password_1_24px.png")));
         lbpass.setFont(new Font("Times New Roman", Font.BOLD, 14));
         txtuser = new javax.swing.JTextField();
-        txtuser.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+        txtuser.setFont(new Font("Times New Roman", Font.PLAIN, 14));
         txtpass = new javax.swing.JPasswordField();
-        txtpass.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+        txtpass.setFont(new Font("Times New Roman", Font.PLAIN, 14));
         btLogin = new javax.swing.JButton();
         btLogin.setBackground(Color.WHITE);
         btLogin.setForeground(Color.BLACK);

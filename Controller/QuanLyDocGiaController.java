@@ -102,26 +102,50 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 		table.repaint();
 		btAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
-						covertDateToDateSql((Date) txtNgaySinh.getDate()),
-						txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
-						txtMaloaidocgia.getText());
-				docgiaservice.Insert(dg);
-				setDateToTabel();
+				if (txtMaDocGia.getText().equals("") || txtHodem.getText().equals("") || txtTen.getText().equals("")
+						|| txtNgaySinh.getDate() == null || txtDiaChi.getText().equals("")
+						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
+						|| txtGioitinh.getText().equals("")) {
+JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
+				} else {
+
+					dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
+							covertDateToDateSql((Date) txtNgaySinh.getDate()),
+							txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
+							txtMaloaidocgia.getText());
+					docgiaservice.Insert(dg);
+					setDateToTabel();
+				}
 			}
 		});
 		btInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
-						covertDateToDateSql((Date) txtNgaySinh.getDate()),
-						txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
-						txtMaloaidocgia.getText());
-				docgiaservice.Update(dg);
-				setDateToTabel();
+				if (txtMaDocGia.getText().equals("") || txtHodem.getText().equals("") || txtTen.getText().equals("")
+						|| txtNgaySinh.getDate() == null || txtDiaChi.getText().equals("")
+						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
+						|| txtGioitinh.getText().equals("")) {
+					JOptionPane.showMessageDialog(pnView, "Vui lòng Chọn đầy đủ thông tin");
+				} else {
+
+					dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
+							covertDateToDateSql((Date) txtNgaySinh.getDate()),
+							txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
+							txtMaloaidocgia.getText());
+					docgiaservice.Update(dg);
+					setDateToTabel();
+				}
 			}
 		});
 		btDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (txtMaDocGia.getText().equals("") || txtHodem.getText().equals("") || txtTen.getText().equals("")
+						|| txtNgaySinh.getDate() == null || txtDiaChi.getText().equals("")
+						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
+						|| txtGioitinh.getText().equals("")) {
+					JOptionPane.showMessageDialog(pnView, "Vui lòng Chọn đầy đủ thông tin");
+				} else {
+
+				}
 				String sql = "Delete from DocGia where MaDocGia=\'" + txtMaDocGia.getText() + "\'";
 				try {
 					Connection conn = SQLConnect.getConnection();

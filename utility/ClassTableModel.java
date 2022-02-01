@@ -54,13 +54,14 @@ public class ClassTableModel {
 		for (int i = 0; i < num; i++) {
 			tt = listitem.get(i);
 			obj = new Object[columns];
-			obj[0] = tt.getMathuthu();
+			obj[0] = tt.getMaThuThu();
 			obj[1] = i + 1;
-			obj[2]=tt.isGioitinh()==true?"Nam":"Nữ";
-			obj[3] = tt.getHodem();
-			obj[4] = tt.getTen();
-			obj[5] = tt.getDiachi();
-			obj[6] = tt.getMatk();
+			
+			obj[2] = tt.getHoDem();
+			obj[3] = tt.getTen();
+			obj[4]=tt.isGioiTinh()==true?"Nam":"Nữ";
+			obj[5] = tt.getDiaChi();
+			obj[6] = tt.getMaTk();
 			dtm.addRow(obj);
 		}
 		return dtm;
@@ -112,12 +113,13 @@ public class ClassTableModel {
 			Tra t = listitem.get(i);
 			obj = new Object[columns];
 			obj[0]=i+1;
-			obj[1] = t.getNgaytra();
-			obj[2] = t.getSosachtra();
-			obj[3] = t.getSosachchuatra();
-			obj[4] = t.getMathe();
-			obj[5]=t.getMathuthu();
-			obj[6] = t.getMasach();
+			obj[1] = t.getMathe();
+			obj[2]=t.getMathuthu();
+			obj[3] = t.getMasach();
+			obj[4] = t.getNgaytra();
+			obj[5] = t.getSosachtra();
+			obj[6] = t.getSosachchuatra();
+			
 			dtm.addRow(obj);
 		}
 		}
