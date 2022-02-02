@@ -118,7 +118,7 @@ public class ClassTableModel {
 			obj[3] = t.getMasach();
 			obj[4] = t.getNgaytra();
 			obj[5] = t.getSosachtra();
-			obj[6] = t.getSosachchuatra();
+	
 			
 			dtm.addRow(obj);
 		}

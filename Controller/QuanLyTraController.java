@@ -3,7 +3,6 @@ package Controller;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -23,22 +22,23 @@ import utility.ClassTableModel;
 public class QuanLyTraController extends JFrame implements MouseListener, ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel pnView;
-	private JTextField txtSearch, txtSoSachTra, txtSoSachChuaTra, txtMaThe, txtMaThuThu, txtMaSach;
+	private JTextField txtSearch, txtSoSachTra, txtMaThe, txtMaThuThu, txtMaSach;
 	private JButton btAdd, btDelete, btInsert;
 	private JDateChooser txtNgayTra;
 
 	private final String[] COLUMNS = { "STT","Mã Thẻ", "Mã Thủ Thư",
-			"Mã Sách", "Ngày Trả", "Số Sách Trả", "Số Sách chưa trả"  };
+			"Mã Sách", "Ngày Trả", "Số Sách Trả"  };
 	private TraService traservice = null;
 	private TableRowSorter<TableModel> rowSorter = null;
 
-	public QuanLyTraController(JPanel pnView, JTextField txtSearch, JTextField txtSoSachTra,
-			JTextField txtSoSachChuaTra, JTextField txtMaThe, JTextField txtMaThuThu, JTextField txtMaSach,
-			JButton btAdd, JButton btDelete, JButton btInsert, JDateChooser txtNgayTra) {
+	
+public QuanLyTraController(JPanel pnView, JTextField txtSearch, JTextField txtSoSachTra, JTextField txtMaThe,
+			JTextField txtMaThuThu, JTextField txtMaSach, JButton btAdd, JButton btDelete, JButton btInsert,
+			JDateChooser txtNgayTra) throws HeadlessException {
+		super();
 		this.pnView = pnView;
 		this.txtSearch = txtSearch;
 		this.txtSoSachTra = txtSoSachTra;
-		this.txtSoSachChuaTra = txtSoSachChuaTra;
 		this.txtMaThe = txtMaThe;
 		this.txtMaThuThu = txtMaThuThu;
 		this.txtMaSach = txtMaSach;
@@ -46,13 +46,13 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 		this.btDelete = btDelete;
 		this.btInsert = btInsert;
 		this.txtNgayTra = txtNgayTra;
+
 		this.traservice = new TraServiceImpl();
 	}
 private Tra t=null;
 	private DefaultTableModel model;
 	private JTable table;
 	private Vector<Tra> listItem = null;
-	private SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy");
 	public void setDateToTable() {
 		listItem = (Vector<Tra>) traservice.getList();
 		model = new ClassTableModel().setTableTra(listItem, COLUMNS);
@@ -109,29 +109,29 @@ private Tra t=null;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
-			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")||txtSoSachChuaTra.getText().equals("")) {
+			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
 			}else {
-			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()),Integer.parseInt(txtSoSachChuaTra.getText()));
+			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()));
 				
 			 traservice.Insert(t);
 			 setDateToTable();
 			}
 		} else if (e.getSource() == btInsert) {
-			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")||txtSoSachChuaTra.getText().equals("")) {
+			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
 			}else {
-			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()),Integer.parseInt(txtSoSachChuaTra.getText()));
+			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()));
 				
 			 traservice.Update(t);
 			 setDateToTable();
 			}
 
 		} else if (e.getSource() == btDelete) {
-			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")||txtSoSachChuaTra.getText().equals("")) {
+			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
 			}else {
-			String sql = "Delete from Tra where NgayTra=\'" + covertDateToDateSql(txtNgayTra.getDate()) + "\'";
+			String sql = "Delete from Tra where NgayTra=\'" + covertDateToDateSql(txtNgayTra.getDate()) + "\' and MaThe=\'"+txtMaThe.getText()+"\' and MaSach=\'"+txtMaSach.getText()+"\'";
 			try {
 				Connection conn = SQLConnect.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
@@ -152,7 +152,6 @@ private Tra t=null;
 		   selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
 		Tra t = (Tra) listItem.elementAt(selectedRowIndex);
 		txtNgayTra.setDate(t.getNgaytra());
-		txtSoSachChuaTra.setText(String.valueOf(t.getSosachchuatra()));
 		txtSoSachTra.setText(String.valueOf(t.getSosachtra()));
 		txtMaThe.setText(t.getMathe());
 		txtMaThuThu.setText(t.getMathuthu());

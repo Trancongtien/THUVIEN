@@ -17,18 +17,16 @@ public class QuanLyTra extends JPanel {
 	private javax.swing.JButton btDelete;
 	private javax.swing.JLabel lbMaThe;
 	private javax.swing.JLabel lbSoSachTra;
-	private javax.swing.JLabel lbSoSachChuaTra;
+	private javax.swing.JLabel lbMaThuThu;
 	private javax.swing.JLabel lbNgayTra;
 	private javax.swing.JLabel lbMaSach;
-	private javax.swing.JLabel lbMaThuThu;
 	private javax.swing.JPanel pnTable;
 	private javax.swing.JPanel pnQuery;
 	private javax.swing.JTextField txtFind;
 	private javax.swing.JTextField txtMaThe;
 	private javax.swing.JTextField txtSoSachTra;
-	private javax.swing.JTextField txtSoSachChuaTra;
-	private javax.swing.JTextField txtMaSach;
 	private javax.swing.JTextField txtMaThuThu;
+	private javax.swing.JTextField txtMaSach;
 	private JLabel lblNewLabel;
 
 	public QuanLyTra() {
@@ -42,24 +40,20 @@ public class QuanLyTra extends JPanel {
 		lbMaThe.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lbSoSachTra = new javax.swing.JLabel();
 		lbSoSachTra.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lbSoSachChuaTra = new javax.swing.JLabel();
-		lbSoSachChuaTra.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lbMaThuThu = new javax.swing.JLabel();
+		lbMaThuThu.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		txtMaThe = new javax.swing.JTextField();
 		txtMaThe.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtSoSachTra = new javax.swing.JTextField();
 		txtSoSachTra.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		txtSoSachChuaTra = new javax.swing.JTextField();
-		txtSoSachChuaTra.setFont(new Font("Times New Roman", Font.PLAIN, 13));
+		txtMaThuThu = new javax.swing.JTextField();
+		txtMaThuThu.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lbNgayTra = new javax.swing.JLabel();
 		lbNgayTra.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lbMaSach = new javax.swing.JLabel();
 		lbMaSach.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lbMaThuThu = new javax.swing.JLabel();
-		lbMaThuThu.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		txtMaSach = new javax.swing.JTextField();
 		txtMaSach.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		txtMaThuThu = new javax.swing.JTextField();
-		txtMaThuThu.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		btAdd = new javax.swing.JButton();
 		btAdd.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		btInsert = new javax.swing.JButton();
@@ -82,23 +76,19 @@ public class QuanLyTra extends JPanel {
 
 		lbSoSachTra.setText("Số Sách Trả :");
 
-		lbSoSachChuaTra.setText("Số Sách Chưa Trả :");
+		lbMaThuThu.setText("Số Sách Chưa Trả :");
 
 		txtMaThe.setText("");
 
 		txtSoSachTra.setText("");
 
-		txtSoSachChuaTra.setText("");
+		txtMaThuThu.setText("");
 
 		lbNgayTra.setText("Ngày Trả");
 
 		lbMaSach.setText("Mã Sách :");
 
-		lbMaThuThu.setText("Mã Thủ Thư:");
-
 		txtMaSach.setText("");
-
-		txtMaThuThu.setText("");
 
 		btAdd.setText("Thêm");
 
@@ -132,20 +122,19 @@ public class QuanLyTra extends JPanel {
 									.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
 										.addComponent(lbMaThe, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
 										.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-										.addComponent(lbSoSachChuaTra, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+										.addComponent(lbMaThuThu, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(gl_pnQuery.createParallelGroup(Alignment.TRAILING)
 										.addComponent(txtMaThe, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
 										.addGroup(gl_pnQuery.createSequentialGroup()
 											.addGroup(gl_pnQuery.createParallelGroup(Alignment.TRAILING)
-												.addComponent(txtSoSachChuaTra, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+												.addComponent(txtMaThuThu, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
 												.addComponent(txtSoSachTra, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
 											.addGap(2)))
 									.addGap(26)
 									.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
 										.addComponent(lbNgayTra, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-										.addComponent(lbMaSach, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-										.addComponent(lbMaThuThu, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+										.addComponent(lbMaSach, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
 								.addGroup(gl_pnQuery.createSequentialGroup()
 									.addGap(113)
 									.addComponent(btAdd, GroupLayout.PREFERRED_SIZE, 65, Short.MAX_VALUE)
@@ -158,8 +147,7 @@ public class QuanLyTra extends JPanel {
 								.addGroup(gl_pnQuery.createSequentialGroup()
 									.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
 									.addGap(77))
-								.addComponent(txtMaSach, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-								.addComponent(txtMaThuThu, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))))
+								.addComponent(txtMaSach, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))))
 					.addGap(29))
 		);
 		gl_pnQuery.setVerticalGroup(
@@ -187,20 +175,15 @@ public class QuanLyTra extends JPanel {
 							.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
 								.addGroup(gl_pnQuery.createSequentialGroup()
 									.addGap(6)
-									.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE))
+									.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
 								.addComponent(txtSoSachTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lbMaSach)
 								.addComponent(txtMaSach, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
-							.addComponent(lbSoSachChuaTra, GroupLayout.PREFERRED_SIZE, 15, Short.MAX_VALUE))
+							.addComponent(lbMaThuThu, GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE))
 						.addGroup(gl_pnQuery.createSequentialGroup()
 							.addGap(55)
-							.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtSoSachChuaTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_pnQuery.createSequentialGroup()
-									.addGap(6)
-									.addComponent(lbMaThuThu, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addComponent(txtMaThuThu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+							.addComponent(txtMaThuThu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(55)
 					.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btAdd)
@@ -223,7 +206,7 @@ public class QuanLyTra extends JPanel {
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		QuanLyTraController controller = new QuanLyTraController(pnTable, txtFind, txtSoSachTra, txtSoSachChuaTra, txtMaThe, txtMaThuThu, txtMaSach, btAdd, btDelete, btInsert, txtNgayTra);
-				controller.setDateToTable();
+				QuanLyTraController controller = new QuanLyTraController(pnTable, txtFind, txtSoSachTra, txtMaThe, txtMaThuThu, txtMaSach, btAdd, btDelete, btInsert, txtNgayTra);
+	controller.setDateToTable();
 	}
 }

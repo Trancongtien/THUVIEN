@@ -160,7 +160,7 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ giá trị");
 			} else {
 				String sql = "Delete from Muon where MaThe=\'" + txtMaThe.getText() + "\' and NgayMuon=\'"
-						+ txtNgayMuon.getDate() + "\'";
+						+ covertDateToDateSql(txtNgayMuon.getDate()) + "\' and MaSach=\'"+ txtMaSach.getText()+"\'";
 				try {
 					Connection conn = SQLConnect.getConnection();
 					PreparedStatement ps = conn.prepareStatement(sql);
