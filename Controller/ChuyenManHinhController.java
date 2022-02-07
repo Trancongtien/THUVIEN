@@ -17,14 +17,14 @@ public class ChuyenManHinhController extends JFrame {
 	private String kindSelected = "";
 	private List<DanhMucBean> listItem= null;
 
-	public ChuyenManHinhController(JPanel jpnRoot) {
-		this.root = jpnRoot;
+	public ChuyenManHinhController(JPanel pnRoot) {
+		this.root = pnRoot;
 	}
 
-	public void setView(JPanel jpnItem, JLabel jlbItem) {
+	public void setView(JPanel pnItem, JLabel lbItem) {
 		kindSelected = "TrangChu";
-		jpnItem.setBackground(new Color(96, 100, 191));
-		jlbItem.setBackground(new Color(96, 100, 191));
+		pnItem.setBackground(new Color(96, 100, 191));
+		lbItem.setBackground(new Color(96, 100, 191));
 
 		root.removeAll();
 		root.setLayout(new BorderLayout());
@@ -44,13 +44,13 @@ public class ChuyenManHinhController extends JFrame {
 		private JPanel node;
 		private String kind;
 		
-		private JPanel jpnItem;
-		private JLabel jlbItem;
+		private JPanel pnItem;
+		private JLabel lbItem;
 
-		public LabelEvent(String kind, JPanel jpnItem, JLabel jlbItem) {
+		public LabelEvent(String kind, JPanel pnItem, JLabel lbItem) {
 			this.kind = kind;
-			this.jpnItem = jpnItem;
-			this.jlbItem = jlbItem;
+			this.pnItem = pnItem;
+			this.lbItem = lbItem;
 		}
 
 		@Override
@@ -95,8 +95,8 @@ public class ChuyenManHinhController extends JFrame {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			kindSelected = kind;
-			jpnItem.setBackground(new Color(96, 100, 191));
-			jlbItem.setBackground(new Color(96, 100, 191));
+			pnItem.setBackground(new Color(96, 100, 191));
+			lbItem.setBackground(new Color(96, 100, 191));
 
 		}
 
@@ -108,16 +108,16 @@ public class ChuyenManHinhController extends JFrame {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			jpnItem.setBackground(new Color(96, 100, 191));
-			jlbItem.setBackground(new Color(96, 100, 191));
+			pnItem.setBackground(new Color(96, 100, 191));
+			lbItem.setBackground(new Color(96, 100, 191));
 
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
 			if (!kindSelected.equalsIgnoreCase(kind)) {
-				jpnItem.setBackground(new Color(0, 250,0));
-				jlbItem.setBackground(new Color(0, 250, 0));
+				pnItem.setBackground(new Color(0, 250,0));
+				lbItem.setBackground(new Color(0, 250, 0));
 			}
 
 		}

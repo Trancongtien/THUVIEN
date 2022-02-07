@@ -17,8 +17,8 @@ public class QuanLyTra extends JPanel {
 	private javax.swing.JButton btDelete;
 	private javax.swing.JLabel lbMaThe;
 	private javax.swing.JLabel lbSoSachTra;
-	private javax.swing.JLabel lbMaThuThu;
 	private javax.swing.JLabel lbNgayTra;
+	private javax.swing.JLabel lbMaThuThu;
 	private javax.swing.JLabel lbMaSach;
 	private javax.swing.JPanel pnTable;
 	private javax.swing.JPanel pnQuery;
@@ -40,18 +40,18 @@ public class QuanLyTra extends JPanel {
 		lbMaThe.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lbSoSachTra = new javax.swing.JLabel();
 		lbSoSachTra.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		lbMaThuThu = new javax.swing.JLabel();
-		lbMaThuThu.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lbNgayTra = new javax.swing.JLabel();
+		lbNgayTra.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		txtMaThe = new javax.swing.JTextField();
 		txtMaThe.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtSoSachTra = new javax.swing.JTextField();
 		txtSoSachTra.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		txtMaThuThu = new javax.swing.JTextField();
-		txtMaThuThu.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		lbNgayTra = new javax.swing.JLabel();
-		lbNgayTra.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lbMaThuThu = new javax.swing.JLabel();
+		lbMaThuThu.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lbMaSach = new javax.swing.JLabel();
 		lbMaSach.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		txtMaThuThu = new javax.swing.JTextField();
+		txtMaThuThu.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		txtMaSach = new javax.swing.JTextField();
 		txtMaSach.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		btAdd = new javax.swing.JButton();
@@ -72,122 +72,117 @@ public class QuanLyTra extends JPanel {
 
 		txtFind.setText("");
 
-		lbMaThe.setText("Mã Thẻ : ");
+		lbMaThe.setText("Mã Thẻ :");
 
-		lbSoSachTra.setText("Số Sách Trả :");
+		lbSoSachTra.setText("Số Sách Trả : ");
 
-		lbMaThuThu.setText("Mã Thủ Thư");
+		lbNgayTra.setText("Ngày Trả :");
 
 		txtMaThe.setText("");
 
 		txtSoSachTra.setText("");
 
-		txtMaThuThu.setText("");
+		lbMaSach.setText("Mã Sách: ");
 
-		lbNgayTra.setText("Ngày Trả :");
-
-		lbMaSach.setText("Mã Sách :");
+		lbMaThuThu.setText("Mã Thủ Thư :");
 
 		txtMaSach.setText("");
 
+		txtMaThuThu.setText("");
+
 		btAdd.setText("Thêm");
 
-		btInsert.setText("Sửa ");
+		btInsert.setText("Sửa");
 
-		btDelete.setText("Xóa ");
+		btDelete.setText("Xóa");
 
-		lblNewLabel = new JLabel("Nhập kí tự mà bạn muốn tìm : ");
+		lblNewLabel = new JLabel("Nhập kí tự mà bạn muốn tìm :");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		
-		JDateChooser txtNgayTra =  new com.toedter.calendar.JDateChooser();
+
+		JDateChooser txtNgayTra = new com.toedter.calendar.JDateChooser();
 		txtNgayTra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		txtNgayTra.setDateFormatString("dd/MM/yyyy");
 
 		javax.swing.GroupLayout gl_pnQuery = new javax.swing.GroupLayout(pnQuery);
-		gl_pnQuery.setHorizontalGroup(
-			gl_pnQuery.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnQuery.createSequentialGroup()
-					.addGap(0)
-					.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addGap(85)
-							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 198, Short.MAX_VALUE)
-							.addGap(30)
-							.addComponent(txtFind, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-							.addGap(177))
-						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addGap(58)
-							.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-								.addComponent(lbMaThe, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-								.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-								.addComponent(lbMaThuThu, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtSoSachTra, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-								.addComponent(txtMaThe, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-								.addComponent(txtMaThuThu, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_pnQuery.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lbMaSach, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lbNgayTra, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtMaSach, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-								.addComponent(txtNgayTra, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))))
-					.addGap(29))
-				.addGroup(Alignment.TRAILING, gl_pnQuery.createSequentialGroup()
-					.addGap(124)
-					.addGroup(gl_pnQuery.createSequentialGroup()
-						.addComponent(btAdd, GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-						.addGap(112)
-						.addComponent(btInsert, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-						.addGap(125))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-					.addGap(95))
-		);
-		gl_pnQuery.setVerticalGroup(
-			gl_pnQuery.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnQuery.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtFind, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel))
-					.addGap(18)
-					.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
+		gl_pnQuery.setHorizontalGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING).addGroup(gl_pnQuery
+				.createSequentialGroup().addGap(0)
+				.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pnQuery.createSequentialGroup().addGap(58)
+								.addComponent(lblNewLabel, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE).addGap(44)
+								.addComponent(txtFind, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE).addGap(217))
+						.addGroup(gl_pnQuery.createSequentialGroup().addGroup(gl_pnQuery
+								.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_pnQuery.createSequentialGroup().addGap(58)
+										.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
+												.addComponent(lbMaThe, GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+												.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 126,
+														Short.MAX_VALUE)
+												.addComponent(lbNgayTra, GroupLayout.DEFAULT_SIZE, 126,
+														Short.MAX_VALUE))
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
+												.addComponent(txtNgayTra, GroupLayout.DEFAULT_SIZE, 152,
+														Short.MAX_VALUE)
+												.addComponent(txtMaThe, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
+														152, Short.MAX_VALUE)
+												.addComponent(txtSoSachTra, GroupLayout.DEFAULT_SIZE, 152,
+														Short.MAX_VALUE))
+										.addGap(26)
+										.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
+												.addComponent(lbMaThuThu, GroupLayout.DEFAULT_SIZE, 144,
+														Short.MAX_VALUE)
+												.addComponent(lbMaSach, GroupLayout.DEFAULT_SIZE, 144,
+														Short.MAX_VALUE)))
+								.addGroup(gl_pnQuery.createSequentialGroup().addGap(113)
+										.addComponent(btAdd, GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE).addGap(123)
+										.addComponent(btInsert, GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+										.addGap(125)))
+								.addPreferredGap(ComponentPlacement.UNRELATED).addGroup(
+										gl_pnQuery.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_pnQuery.createSequentialGroup()
+														.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 83,
+																Short.MAX_VALUE)
+														.addGap(77))
+												.addComponent(txtMaThuThu, GroupLayout.DEFAULT_SIZE, 160,
+														Short.MAX_VALUE)
+												.addComponent(txtMaSach, GroupLayout.DEFAULT_SIZE, 160,
+														Short.MAX_VALUE))))
+				.addGap(29)));
+		gl_pnQuery.setVerticalGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnQuery.createSequentialGroup().addContainerGap()
+						.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtFind, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel))
+						.addGap(18)
+						.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
+								.addGroup(gl_pnQuery.createSequentialGroup().addGap(6).addComponent(lbMaThe,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addComponent(txtMaThe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbMaThuThu).addComponent(txtMaThuThu, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
+								.addGroup(gl_pnQuery.createSequentialGroup().addGap(6).addComponent(lbSoSachTra,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addComponent(txtSoSachTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lbMaSach).addComponent(txtMaSach, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_pnQuery.createSequentialGroup()
-									.addGap(6)
-									.addComponent(lbMaThe, GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE))
-								.addComponent(txtMaThe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lbNgayTra))
-							.addGap(18))
-						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addComponent(txtNgayTra, GroupLayout.PREFERRED_SIZE, 15, Short.MAX_VALUE)
-							.addGap(22)))
-					.addGap(6)
-					.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-						.addComponent(txtSoSachTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lbMaSach)
-						.addComponent(txtMaSach, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addGap(18)
-							.addComponent(lbMaThuThu, GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE)
-							.addGap(55))
-						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addGap(21)
-							.addComponent(txtMaThuThu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(1)
-					.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btAdd)
-						.addComponent(btInsert)
-						.addComponent(btDelete))
-					.addGap(19))
-		);
+										.addComponent(lbNgayTra, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addGap(55))
+								.addGroup(gl_pnQuery.createSequentialGroup()
+										.addComponent(txtNgayTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)))
+						.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE).addComponent(btAdd)
+								.addComponent(btInsert).addComponent(btDelete))
+						.addGap(20)));
 		pnQuery.setLayout(gl_pnQuery);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -203,7 +198,8 @@ public class QuanLyTra extends JPanel {
 								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 						.addGap(0, 0, 0).addComponent(pnTable, javax.swing.GroupLayout.DEFAULT_SIZE,
 								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-				QuanLyTraController controller = new QuanLyTraController(pnTable, txtFind, txtSoSachTra, txtMaThe, txtMaThuThu, txtMaSach, btAdd, btDelete, btInsert, txtNgayTra);
-	controller.setDateToTable();
+		QuanLyTraController controller = new QuanLyTraController(pnTable, txtFind, txtSoSachTra, txtMaThe, txtMaThuThu,
+				txtMaSach, btAdd, btDelete, btInsert, txtNgayTra);
+		controller.setDateToTable();
 	}
 }

@@ -3,9 +3,7 @@ package dao;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
-
-import model.Muon;
-import model.Tra;
+import model.*;
 
 public class TraDAOImpl implements TraDAO {
 
