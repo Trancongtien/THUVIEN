@@ -76,7 +76,7 @@ public class QuanLyTra extends JPanel {
 
 		lbSoSachTra.setText("Số Sách Trả :");
 
-		lbMaThuThu.setText("Số Sách Chưa Trả :");
+		lbMaThuThu.setText("Mã Thủ Thư");
 
 		txtMaThe.setText("");
 
@@ -84,7 +84,7 @@ public class QuanLyTra extends JPanel {
 
 		txtMaThuThu.setText("");
 
-		lbNgayTra.setText("Ngày Trả");
+		lbNgayTra.setText("Ngày Trả :");
 
 		lbMaSach.setText("Mã Sách :");
 
@@ -116,39 +116,35 @@ public class QuanLyTra extends JPanel {
 							.addComponent(txtFind, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
 							.addGap(177))
 						.addGroup(gl_pnQuery.createSequentialGroup()
+							.addGap(58)
 							.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pnQuery.createSequentialGroup()
-									.addGap(58)
-									.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-										.addComponent(lbMaThe, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-										.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-										.addComponent(lbMaThuThu, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addGroup(gl_pnQuery.createParallelGroup(Alignment.TRAILING)
-										.addComponent(txtMaThe, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-										.addGroup(gl_pnQuery.createSequentialGroup()
-											.addGroup(gl_pnQuery.createParallelGroup(Alignment.TRAILING)
-												.addComponent(txtMaThuThu, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-												.addComponent(txtSoSachTra, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-											.addGap(2)))
-									.addGap(26)
-									.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-										.addComponent(lbNgayTra, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-										.addComponent(lbMaSach, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-								.addGroup(gl_pnQuery.createSequentialGroup()
-									.addGap(113)
-									.addComponent(btAdd, GroupLayout.PREFERRED_SIZE, 65, Short.MAX_VALUE)
-									.addGap(123)
-									.addComponent(btInsert, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-									.addGap(125)))
+								.addComponent(lbMaThe, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+								.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+								.addComponent(lbMaThuThu, GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtNgayTra, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-								.addGroup(gl_pnQuery.createSequentialGroup()
-									.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-									.addGap(77))
-								.addComponent(txtMaSach, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))))
+								.addComponent(txtSoSachTra, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+								.addComponent(txtMaThe, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+								.addComponent(txtMaThuThu, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_pnQuery.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lbMaSach, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lbNgayTra, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtMaSach, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+								.addComponent(txtNgayTra, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))))
 					.addGap(29))
+				.addGroup(Alignment.TRAILING, gl_pnQuery.createSequentialGroup()
+					.addGap(124)
+					.addGroup(gl_pnQuery.createSequentialGroup()
+						.addComponent(btAdd, GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+						.addGap(112)
+						.addComponent(btInsert, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+						.addGap(125))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btDelete, GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+					.addGap(95))
 		);
 		gl_pnQuery.setVerticalGroup(
 			gl_pnQuery.createParallelGroup(Alignment.LEADING)
@@ -168,28 +164,29 @@ public class QuanLyTra extends JPanel {
 								.addComponent(lbNgayTra))
 							.addGap(18))
 						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addComponent(txtNgayTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)))
+							.addComponent(txtNgayTra, GroupLayout.PREFERRED_SIZE, 15, Short.MAX_VALUE)
+							.addGap(22)))
+					.addGap(6)
+					.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+						.addComponent(txtSoSachTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbMaSach)
+						.addComponent(txtMaSach, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGroup(gl_pnQuery.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
-								.addGroup(gl_pnQuery.createSequentialGroup()
-									.addGap(6)
-									.addComponent(lbSoSachTra, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
-								.addComponent(txtSoSachTra, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lbMaSach)
-								.addComponent(txtMaSach, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addGap(18)
-							.addComponent(lbMaThuThu, GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE))
+							.addComponent(lbMaThuThu, GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE)
+							.addGap(55))
 						.addGroup(gl_pnQuery.createSequentialGroup()
-							.addGap(55)
-							.addComponent(txtMaThuThu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(55)
+							.addGap(21)
+							.addComponent(txtMaThuThu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(1)
 					.addGroup(gl_pnQuery.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btAdd)
 						.addComponent(btInsert)
 						.addComponent(btDelete))
-					.addGap(20))
+					.addGap(19))
 		);
 		pnQuery.setLayout(gl_pnQuery);
 

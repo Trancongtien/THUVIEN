@@ -76,7 +76,7 @@ public class DocGiaDAOImpl implements DocGiaDAO {
 			ps.setString(7, dg.getDiachi());
 			ps.setString(8, dg.getMaloaidocgia());
 
-			ps.execute();
+			ps.executeUpdate();
 			ps.close();
 			conn.close();
 		} catch (Exception e) {

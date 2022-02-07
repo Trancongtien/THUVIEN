@@ -3,6 +3,8 @@ package dao;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+
+import model.Muon;
 import model.Tra;
 
 public class TraDAOImpl implements TraDAO {
@@ -11,15 +13,15 @@ public class TraDAOImpl implements TraDAO {
 	public List<Tra> getList() {
 		Connection conn = SQLConnect.getConnection();
 		String sql = "Select *From Tra";
-		List<Tra> list= new Vector<Tra>();
+		List<Tra> list = new Vector<Tra>();
 		try {
-			PreparedStatement ps =(PreparedStatement) conn.prepareStatement(sql);
+			PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				Tra t= new Tra();
+			while (rs.next()) {
+				Tra t = new Tra();
 				t.setNgaytra(rs.getDate("NgayTra"));
 				t.setSosachtra(rs.getInt("SoSachTra"));
-				t.setMathe(rs.getString("MaThe"));				
+				t.setMathe(rs.getString("MaThe"));
 				t.setMathuthu(rs.getString("MaThuThu"));
 				t.setMasach(rs.getString("MaSach"));
 				list.add(t);
@@ -41,7 +43,7 @@ public class TraDAOImpl implements TraDAO {
 			ps.setString(1, t.getMathe());
 			ps.setString(2, t.getMathuthu());
 			ps.setString(3, t.getMasach());
-			ps.setDate(4,(Date) t.getNgaytra());
+			ps.setDate(4, (Date) t.getNgaytra());
 			ps.setInt(5, t.getSosachtra());
 			ps.setString(6, t.getMathe());
 			ps.setString(7, t.getMasach());
@@ -49,8 +51,7 @@ public class TraDAOImpl implements TraDAO {
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,17 +67,38 @@ public class TraDAOImpl implements TraDAO {
 			ps.setString(1, t.getMathe());
 			ps.setString(2, t.getMathuthu());
 			ps.setString(3, t.getMasach());
-			ps.setDate(4,(Date) t.getNgaytra());
+			ps.setDate(4, (Date) t.getNgaytra());
 			ps.setInt(5, t.getSosachtra());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
+	}
+
+	public int tinhToan(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.tinhtoan(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			result=(rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

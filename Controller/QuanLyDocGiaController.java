@@ -106,7 +106,7 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 						|| txtNgaySinh.getDate() == null || txtDiaChi.getText().equals("")
 						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
 						|| txtGioitinh.getText().equals("")) {
-JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
+					JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
 				} else {
 
 					dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
