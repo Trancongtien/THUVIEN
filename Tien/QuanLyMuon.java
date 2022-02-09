@@ -27,6 +27,7 @@ public class QuanLyMuon extends JPanel {
 	private javax.swing.JTextField txtMaThuThu;
 	private javax.swing.JTextField txtMaSach;
 	private JLabel lblNewLabel;
+	private JDateChooser txtNgayMuon;
 
 	public QuanLyMuon() {
 		pnTable = new javax.swing.JPanel();
@@ -98,7 +99,7 @@ public class QuanLyMuon extends JPanel {
 		lblNewLabel = new JLabel("Nhập kí tự mà bạn muốn tìm :");
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 
-		JDateChooser txtNgayMuon = new com.toedter.calendar.JDateChooser();
+		txtNgayMuon = new com.toedter.calendar.JDateChooser();
 		txtNgayMuon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		txtNgayMuon.setDateFormatString("dd/MM/yyyy");
 

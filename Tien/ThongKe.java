@@ -46,8 +46,7 @@ public class ThongKe extends JPanel {
 
 		lbFind.setText("Chọn dữ liệu để thống kê :");
 
-		cb.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "Sách", "Mượn ", "Trả", "Chưa Trả", "Độc Giả Chưa Trả" }));
+		cb.setModel(new DefaultComboBoxModel<String>(new String[] {"Sách", "Mượn ", "Trả", "Chưa Trả"}));
 
 		javax.swing.GroupLayout gl_pnQuery = new javax.swing.GroupLayout(pnQuery);
 		gl_pnQuery.setHorizontalGroup(gl_pnQuery.createParallelGroup(Alignment.TRAILING)
