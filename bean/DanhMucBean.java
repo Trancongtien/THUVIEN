@@ -7,40 +7,41 @@ import javax.swing.JPanel;
 public class DanhMucBean {
 
     private String kind;
-    private JPanel jpn;
-    private JLabel jlb;
+    private JPanel pn;
+    private JLabel lb;
 
     public DanhMucBean() {
     }
 
-    public DanhMucBean(String kind, JPanel jpn, JLabel jlb) {
-        this.kind = kind;
-        this.jpn = jpn;
-        this.jlb = jlb;
-    }
+	public DanhMucBean(String kind, JPanel pn, JLabel lb) {
+		this.kind = kind;
+		this.pn = pn;
+		this.lb = lb;
+	}
 
-    public String getKind() {
-        return kind;
-    }
+	public String getKind() {
+		return kind;
+	}
 
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
 
-    public JPanel getJpn() {
-        return jpn;
-    }
+	public JPanel getPn() {
+		return pn;
+	}
 
-    public void setJpn(JPanel jpn) {
-        this.jpn = jpn;
-    }
+	public void setPn(JPanel pn) {
+		this.pn = pn;
+	}
 
-    public JLabel getJlb() {
-        return jlb;
-    }
+	public JLabel getLb() {
+		return lb;
+	}
 
-    public void setJlb(JLabel jlb) {
-        this.jlb = jlb;
-    }
+	public void setLb(JLabel lb) {
+		this.lb = lb;
+	}
 
+    
 }

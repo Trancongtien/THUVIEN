@@ -49,7 +49,8 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 	private Vector<TheThuVien> listItem;
 	private DefaultTableModel model;
 	private JTable table;
-	private TheThuVien ttt=null;
+	private TheThuVien ttt = null;
+
 	public void setDateToTable() {
 		listItem = (Vector<TheThuVien>) theservice.getList();
 		model = new ClassTableModel().setTableThe(listItem, COLUMNS);
@@ -80,7 +81,6 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 		});
@@ -105,9 +105,9 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+
 		int selectedRowIndex = table.getSelectedRow();
-		   selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
+		selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
 		TheThuVien ttt = (TheThuVien) listItem.elementAt(selectedRowIndex);
 		txtMathe.setText(ttt.getMathe());
 		txtNgayBatDau.setDate(ttt.getNgaybatdau());
@@ -139,43 +139,98 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
-			if(txtMathe.getText().equals("")||txtNgayBatDau.getDate()==null||txtNgayKetThuc.getDate()==null||txtGhiChu.getText().equals("")||txtMaDocGia.getText().equals("")) {
+			if (txtMathe.getText().equals("") || txtNgayBatDau.getDate() == null || txtNgayKetThuc.getDate() == null
+					|| txtGhiChu.getText().equals("") || txtMaDocGia.getText().equals("")) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng Nhập đầy đủ thông tin");
 
-			}else {
-			ttt= new TheThuVien(txtMathe.getText(),covertDateToDateSql((Date) txtNgayBatDau.getDate()), covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(), txtMaDocGia.getText());
-			theservice.Insert(ttt);
-			setDateToTable();
+			} else if (kTra(txtMathe.getText()) == 0) {
+				ttt = new TheThuVien(txtMathe.getText(), covertDateToDateSql((Date) txtNgayBatDau.getDate()),
+						covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(),
+						txtMaDocGia.getText());
+				theservice.Insert(ttt);
+				setDateToTable();
+			} else {
+				JOptionPane.showMessageDialog(pnView,
+						"Vui lòng nhập mã thẻ khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
 			}
 		} else if (e.getSource() == btDelete) {
-			if(txtMathe.getText().equals("")||txtNgayBatDau.getDate()==null||txtNgayKetThuc.getDate()==null||txtGhiChu.getText().equals("")||txtMaDocGia.getText().equals("")) {
+			if (txtMathe.getText().equals("") || txtNgayBatDau.getDate() == null || txtNgayKetThuc.getDate() == null
+					|| txtGhiChu.getText().equals("") || txtMaDocGia.getText().equals("")) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
 
-			}else {
-			String sql = "Delete from TheThuVien where MaThe=\'" + txtMathe.getText() + "\'";
-			try {
-				Connection conn = SQLConnect.getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.executeUpdate();
-				setDateToTable();
-			} catch (Exception e2) {
+			} else if (xoa(txtMathe.getText()) == 0) {
+				String sql = "Delete from TheThuVien where MaThe=\'" + txtMathe.getText() + "\'";
+				try {
+					Connection conn = SQLConnect.getConnection();
+					PreparedStatement ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
+					setDateToTable();
+				} catch (Exception e2) {
 
-				e2.printStackTrace();
-			}
+					e2.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Vui lòng xóa ở phần Mượn và Trả");
 			}
 		} else if (e.getSource() == btInsert) {
-			if(txtMathe.getText().equals("")||txtNgayBatDau.getDate()==null||txtNgayKetThuc.getDate()==null||txtGhiChu.getText().equals("")||txtMaDocGia.getText().equals("")) {
+			if (txtMathe.getText().equals("") || txtNgayBatDau.getDate() == null || txtNgayKetThuc.getDate() == null
+					|| txtGhiChu.getText().equals("") || txtMaDocGia.getText().equals("")) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
 
-			}else {
-			ttt= new TheThuVien(txtMathe.getText(),covertDateToDateSql((Date) txtNgayBatDau.getDate()), covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(), txtMaDocGia.getText());
-			theservice.Update(ttt);
-			setDateToTable();
+			} else {
+				ttt = new TheThuVien(txtMathe.getText(), covertDateToDateSql((Date) txtNgayBatDau.getDate()),
+						covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(),
+						txtMaDocGia.getText());
+				theservice.Update(ttt);
+				setDateToTable();
 			}
 		}
 	}
+
 	public java.sql.Date covertDateToDateSql(Date d) {
-        return new java.sql.Date(d.getTime());
-    }
+		return new java.sql.Date(d.getTime());
+	}
+
+	public int kTra(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.ktr1(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				result = (rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int xoa(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.thexoa(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				result = (rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 }

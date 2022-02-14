@@ -88,7 +88,6 @@ public class ClassTableModel {
 			obj[2] = m.getMathuthu();
 			obj[3] = m.getMaSach();
 			obj[4] = m.getNgayMuon();
-			obj[5] = m.getSoSachMuon();
 			dtm.addRow(obj);
 		}
 		}
@@ -117,7 +116,6 @@ public class ClassTableModel {
 			obj[2]=t.getMathuthu();
 			obj[3] = t.getMasach();
 			obj[4] = t.getNgaytra();
-			obj[5] = t.getSosachtra();
 	
 			
 			dtm.addRow(obj);

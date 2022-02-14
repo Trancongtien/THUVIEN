@@ -15,7 +15,7 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 	@Override
 	public List<Muon> getListByMuon() {
 		Connection conn = SQLConnect.getConnection();
-		String sql = "select ngaymuon ,count(muon.SOSACHMUON) as SOLUONG from Muon group by ngaymuon";
+		String sql = "select ngaymuon ,count(muon.masach) as SOLUONG from Muon group by ngaymuon ";
 
 		List<Muon> list = new Vector<Muon>();
 		try {
@@ -24,7 +24,7 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 			while (rs.next()) {
 				Muon m = new Muon();
 				m.setNgayMuon(rs.getDate("ngaymuon"));
-				m.setSoSachMuon(rs.getInt("SOLUONG"));
+				m.setMaSach(rs.getString("SOLUONG"));
 				list.add(m);
 			}
 			ps.close();
@@ -39,7 +39,7 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 	@Override
 	public List<Tra> getListByTra() {
 		Connection conn = SQLConnect.getConnection();
-		String sql = "select ngaytra, count(SOSACHTRA) as SOLUONG from tra group by ngaytra";
+		String sql = "select ngaytra, count(masach) as SOLUONG from tra group by ngaytra";
 		List<Tra> list = new Vector<Tra>();
 		try {
 			PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
@@ -47,7 +47,7 @@ public class ThongKeDAOImpl implements ThongKeDAO {
 			while (rs.next()) {
 				Tra t = new Tra();
 				t.setNgaytra(rs.getDate("ngaytra"));
-				t.setSosachtra(rs.getInt("SOLUONG"));
+				t.setMasach(rs.getString("SOLUONG"));
 				list.add(t);
 			}
 			ps.close();

@@ -1,4 +1,4 @@
-package Tien;
+package GUI;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -71,7 +71,7 @@ public class QuanLyThe extends JPanel {
 
 	        txtMaThe.setText("");
 
-	        lbMaDocGia.setText("         Mã Độc Giả :");
+	        lbMaDocGia.setText("         Mã  Độc Giả :");
 
 	        lbGhiChu.setText("         Ghi Chú :");
 

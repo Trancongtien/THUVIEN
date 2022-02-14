@@ -7,7 +7,8 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
 import com.toedter.calendar.JDateChooser;
-import dao.SQLConnect;
+
+import dao.*;
 import model.*;
 import java.util.Vector;
 import java.util.Date;
@@ -17,22 +18,21 @@ import utility.ClassTableModel;
 
 public class QuanLyMuonController implements ActionListener, MouseListener {
 	private JPanel pnView;
-	private JTextField txtSearch, txtMaThe, txtMaThuThu, txtMaSach, txtSoSachMuon;
+	private JTextField txtSearch, txtMaThe, txtMaThuThu, txtMaSach;
 	private JButton btAdd, btDelete, btInsert;
 	private JDateChooser txtNgayMuon;
-	private final String[] COLUMNS = { "STT", "Mã Thẻ", "Mã Thủ Thư", "Mã sách", "Ngày Mượn", "Số Sách Mượn" };
+	private final String[] COLUMNS = { "STT", "Mã Thẻ", "Mã Thủ Thư", "Mã sách", "Ngày Mượn"};
 	private TableRowSorter<TableModel> rowSorter = null;
 	private MuonService muonservice = null;
 
 	public QuanLyMuonController(JPanel pnView, JTextField txtSearch, JTextField txtMaThe, JTextField txtMaThuThu,
-			JTextField txtMaSach, JTextField txtSoSachMuon, JButton btAdd, JButton btDelete, JButton btInsert,
+			JTextField txtMaSach, JButton btAdd, JButton btDelete, JButton btInsert,
 			JDateChooser txtNgayMuon) {
 		this.pnView = pnView;
 		this.txtSearch = txtSearch;
 		this.txtMaThe = txtMaThe;
 		this.txtMaThuThu = txtMaThuThu;
 		this.txtMaSach = txtMaSach;
-		this.txtSoSachMuon = txtSoSachMuon;
 		this.btAdd = btAdd;
 		this.btDelete = btDelete;
 		this.btInsert = btInsert;
@@ -49,7 +49,7 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 	private Vector<Muon> listItem;
 	private DefaultTableModel model;
 	private JTable table;
-
+	private MuonDAOImpl muondao= new MuonDAOImpl();
 	public void setDateToTable() {
 		listItem = (Vector<Muon>) muonservice.getList();
 		model = new ClassTableModel().setTableMuon(listItem, COLUMNS);
@@ -114,7 +114,6 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 		txtMaThuThu.setText(m.getMathuthu());
 		txtMaSach.setText(m.getMaSach());
 		txtNgayMuon.setDate(m.getNgayMuon());
-		txtSoSachMuon.setText(String.valueOf(m.getSoSachMuon()));
 	}
 
 	@Override
@@ -146,19 +145,18 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 
 		if (e.getSource() == btAdd) {
 			if (txtMaThe.getText().equals("") || txtMaSach.getText().equals("") || txtMaThuThu.getText().equals("")
-					|| txtNgayMuon.getDate() == null || txtSoSachMuon.getText().equals("")) {
+					|| txtNgayMuon.getDate() == null ) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ giá trị");
 			} else {
-				m = new Muon(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
-						covertDateToDateSql((Date) txtNgayMuon.getDate()), Integer.parseInt(txtSoSachMuon.getText()));
+				m = new Muon(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(), covertDateToDateSql(txtNgayMuon.getDate()));
 				muonservice.Insert(m);
 				setDateToTable();
 			}
 		} else if (e.getSource() == btDelete) {
 			if (txtMaThe.getText().equals("") || txtMaSach.getText().equals("") || txtMaThuThu.getText().equals("")
-					|| txtNgayMuon.getDate() == null || txtSoSachMuon.getText().equals("")) {
+					|| txtNgayMuon.getDate() == null ) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ giá trị");
-			} else {
+			} else if(muondao.tinhToan(txtMaThe.getText())==0) {
 				String sql = "Delete from Muon where MaThe=\'" + txtMaThe.getText() + "\' and NgayMuon=\'"
 						+ covertDateToDateSql(txtNgayMuon.getDate()) + "\' and MaSach=\'"+ txtMaSach.getText()+"\'";
 				try {
@@ -169,15 +167,18 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
+			}else {
+				JOptionPane.showMessageDialog(pnView, "Người này vẫn đang thiếu thư viện "+muondao.tinhToan(txtMaThe.getText())+" cuốn");
+				
 			}
 
 		} else if (e.getSource() == btInsert) {
 			if (txtMaThe.getText().equals("") || txtMaSach.getText().equals("") || txtMaThuThu.getText().equals("")
-					|| txtNgayMuon.getDate() == null || txtSoSachMuon.getText().equals("")) {
+					|| txtNgayMuon.getDate() == null) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ giá trị");
 			} else {
 				m = new Muon(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
-						covertDateToDateSql((Date) txtNgayMuon.getDate()), Integer.parseInt(txtSoSachMuon.getText()));
+						covertDateToDateSql((Date) txtNgayMuon.getDate()));
 				muonservice.Update(m);
 				setDateToTable();
 			}

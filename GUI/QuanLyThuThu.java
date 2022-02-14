@@ -1,4 +1,4 @@
-package Tien;
+package GUI;
 
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -81,7 +81,7 @@ public class QuanLyThuThu extends JPanel {
 
 		txtFind.setText("");
 
-		lbMaThuThu.setText("Mã Thủ Thư: ");
+		lbMaThuThu.setText("Mã Thủ Thư : ");
 
 		lbHoDem.setText("Họ Đệm :");
 
@@ -93,11 +93,11 @@ public class QuanLyThuThu extends JPanel {
 
 		txtTen.setText("");
 
-		lbGioiTinh.setText("Giới Tính");
+		lbGioiTinh.setText("Giới Tính :");
 
 		lbDiaChi.setText("Địa Chỉ :");
 
-		lbMaTK.setText("Mã TK:");
+		lbMaTK.setText("Mã TK :");
 
 		txtGioiTinh.setText("");
 

@@ -1,4 +1,4 @@
-package Tien;
+package GUI;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -89,9 +89,9 @@ public class QuanLyDocGia extends JPanel {
 
 		txtFind.setText("");
 
-		lbMaDocGia.setText("Mã Độc Giả: ");
+		lbMaDocGia.setText("Mã Độc Giả");
 
-		lbHoDem.setText("Họ Đệm:");
+		lbHoDem.setText("Họ Đệm");
 
 		lbTen.setText("Tên :");
 
@@ -105,11 +105,11 @@ public class QuanLyDocGia extends JPanel {
 
 		lbGioiTinh.setText("Giới Tính");
 
-		lbSDT.setText("SĐT :");
+		lbSDT.setText("SĐT");
 
-		lbDiaChi.setText("Địa Chỉ :");
+		lbDiaChi.setText("Địa Chỉ");
 
-		lbMaLoaiDocGia.setText("Mã Loại Độc Giả :");
+		lbMaLoaiDocGia.setText("Mã Loại Độc Giả");
 
 		txtGioiTinh.setText("");
 

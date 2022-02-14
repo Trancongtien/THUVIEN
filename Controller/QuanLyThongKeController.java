@@ -39,7 +39,7 @@ public class QuanLyThongKeController {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		if (listItem != null) {
 			for (Muon m : listItem) {
-				dataset.addValue(m.getSoSachMuon(), "Mượn", m.getNgayMuon());
+				dataset.addValue(Integer.parseInt(m.getMaSach()), "Mượn", m.getNgayMuon());
 			}
 		}
 		JFreeChart barChart = ChartFactory.createBarChart("Biểu đồ thống kê số sách mượn trong 1 ngày".toUpperCase(),
@@ -63,9 +63,8 @@ public class QuanLyThongKeController {
 			}
 		}
 		JFreeChart chart = ChartFactory.createPieChart("Thống kê các loại sách", priDataset, true, true, true);
-		PiePlot p = (PiePlot) chart.getPlot();
 		ChartPanel plot = new ChartPanel(chart);
-//    plot.setPreferredSize(new Dimension(pnItem.getWidth(), 321));
+		plot.setPreferredSize(new Dimension(pnItem.getWidth(), 321));
 
 		pnItem.removeAll();
 		pnItem.setLayout(new CardLayout());
@@ -80,7 +79,7 @@ public class QuanLyThongKeController {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		if (listItem != null) {
 			for (Tra t : listItem) {
-				dataset.addValue(t.getSosachtra(), "Trả", t.getNgaytra());
+				dataset.addValue(Integer.parseInt(t.getMasach()), "Trả", t.getNgaytra());
 			}
 		}
 		JFreeChart barChart = ChartFactory.createBarChart("Biểu đồ Số Sách trả trong 1 ngày".toUpperCase(), "Thời Gian",
@@ -112,7 +111,8 @@ public class QuanLyThongKeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		JFreeChart chart = ChartFactory.createPieChart("Số lượng sách và tên sách chưa trả đủ", priDataset, true, true, true);
+		JFreeChart chart = ChartFactory.createPieChart("Số lượng sách và tên sách chưa trả đủ", priDataset, true, true,
+				true);
 		PiePlot p = (PiePlot) chart.getPlot();
 		ChartPanel plot = new ChartPanel(chart);
 		plot.setPreferredSize(new Dimension(pnItem.getWidth(), 321));

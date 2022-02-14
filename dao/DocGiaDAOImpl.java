@@ -49,9 +49,7 @@ public class DocGiaDAOImpl implements DocGiaDAO {
 			ps.setString(6, dg.getSdt());
 			ps.setString(7, dg.getDiachi());
 			ps.setString(8, dg.getMaloaidocgia());
-
 			ps.setString(9, dg.getMaDocGia());
-
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -85,4 +83,44 @@ public class DocGiaDAOImpl implements DocGiaDAO {
 		return 0;
 	}
 
+	public int kTra(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.ktr(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			result=(rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int xoa(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.docgiaxoa(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			result=(rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

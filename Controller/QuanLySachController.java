@@ -58,7 +58,8 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 		this.txtNamXB = txtNamXB;
 		this.sachservice = new SachServiceImpl();
 	}
-	private Sach s=null;
+
+	private Sach s = null;
 	private DefaultTableModel model;
 	private JTable table;
 	JScrollPane scollPane;
@@ -126,10 +127,12 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
 				JOptionPane.showMessageDialog(jpnView, "Vui lòng nhập đầy đủ thông tin");
 
-			}else {
+			}else if(kTra(txtMaSach.getText())==0) {
 			s= new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(), Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()), Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(), txtNhaXuatBan.getText());
 			sachservice.Insert(s);
 			setDateToTabel();
+			}else {
+				JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sách khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
 			}
 		} else if (e.getSource() == brInsert) {
 			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
@@ -144,7 +147,7 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
 				JOptionPane.showMessageDialog(jpnView, "Vui lòng chọn đầy đủ thông tin");
 
-			}else {
+			}else if(xoa(txtMaSach.getText())==0) {
 			String sql = "Delete from Sach where MaSach=\'" + txtMaSach.getText() + "\'";
 			try {
 				Connection conn = SQLConnect.getConnection();
@@ -154,13 +157,15 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-
+		} else {
+			JOptionPane.showMessageDialog(null, "Vui lòng xóa ở phần Mượn và Trả trước");
 		}
+			
 		}
-		
-	    }
+	}
+	
 	public java.sql.Date covertDateToDateSql(Date d) {
-        return new java.sql.Date(d.getTime());
+		return new java.sql.Date(d.getTime());
 	}
 
 	@Override
@@ -201,5 +206,47 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public int kTra(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.ktrsach(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				result = (rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int xoa(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.xoasach(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				result = (rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

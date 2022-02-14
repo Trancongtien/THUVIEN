@@ -20,7 +20,6 @@ public class MuonDAOImpl implements MuonDAO {
 				m.setMathe(rs.getString("MaThe"));
 				m.setMathuthu(rs.getString("MaThuThu"));
 				m.setNgayMuon(rs.getDate("NgayMuon"));
-				m.setSoSachMuon(rs.getInt("SoSachMuon"));
 				list.add(m);
 
 			}
@@ -36,16 +35,15 @@ public class MuonDAOImpl implements MuonDAO {
 	public int Update(Muon m) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Update Muon set MaThe=?,MaThuTHu=?,MaSach=?,NgayMuon=?,SoSachMuon=? where MaThe=? and MaThuThu=? and MaSach=?";
+			String sql = "Update Muon set MaThe=?,MaThuTHu=?,MaSach=?,NgayMuon=? where MaThe=? and MaThuThu=? and MaSach=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, m.getMathe());
 			ps.setString(2, m.getMathuthu());
 			ps.setString(3, m.getMaSach());
 			ps.setDate(4, (Date) m.getNgayMuon());
-			ps.setInt(5, m.getSoSachMuon());
-			ps.setString(6, m.getMathe());
-			ps.setString(7, m.getMathuthu());
-			ps.setString(8, m.getMaSach());
+			ps.setString(5, m.getMathe());
+			ps.setString(6, m.getMathuthu());
+			ps.setString(7, m.getMaSach());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -59,13 +57,12 @@ public class MuonDAOImpl implements MuonDAO {
 	public int Insert(Muon m) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Insert into Muon values(?,?,?,?,?)";
+			String sql = "Insert into Muon values(?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, m.getMathe());
 			ps.setString(2, m.getMathuthu());
 			ps.setString(3, m.getMaSach());
 			ps.setDate(4, (Date) m.getNgayMuon());
-			ps.setInt(5, m.getSoSachMuon());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -75,4 +72,24 @@ public class MuonDAOImpl implements MuonDAO {
 		return 0;
 	}
 
+	public int tinhToan(String t) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.tinhtoan(?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			result=(rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

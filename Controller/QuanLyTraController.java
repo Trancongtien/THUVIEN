@@ -22,20 +22,19 @@ import utility.ClassTableModel;
 public class QuanLyTraController extends JFrame implements MouseListener, ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel pnView;
-	private JTextField txtSearch, txtSoSachTra, txtMaThe, txtMaThuThu, txtMaSach;
+	private JTextField txtSearch, txtMaThe, txtMaThuThu, txtMaSach;
 	private JButton btAdd, btDelete, btInsert;
 	private JDateChooser txtNgayTra;
 
-	private final String[] COLUMNS = { "STT", "Mã Thẻ", "Mã Thủ Thư", "Mã Sách", "Ngày Trả", "Số Sách Trả" };
+	private final String[] COLUMNS = { "STT", "Mã Thẻ", "Mã Thủ Thư", "Mã Sách", "Ngày Trả" };
 	private TraService traservice = null;
 	private TableRowSorter<TableModel> rowSorter = null;
 
-	public QuanLyTraController(JPanel pnView, JTextField txtSearch, JTextField txtSoSachTra, JTextField txtMaThe,
+	public QuanLyTraController(JPanel pnView, JTextField txtSearch, JTextField txtMaThe,
 			JTextField txtMaThuThu, JTextField txtMaSach, JButton btAdd, JButton btDelete, JButton btInsert,
 			JDateChooser txtNgayTra) throws HeadlessException {
 		this.pnView = pnView;
 		this.txtSearch = txtSearch;
-		this.txtSoSachTra = txtSoSachTra;
 		this.txtMaThe = txtMaThe;
 		this.txtMaThuThu = txtMaThuThu;
 		this.txtMaSach = txtMaSach;
@@ -51,7 +50,8 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 	private DefaultTableModel model;
 	private JTable table;
 	private Vector<Tra> listItem = null;
-	private TraDAOImpl trdao= new TraDAOImpl();
+	private TraDAOImpl trdao = new TraDAOImpl();
+
 	public void setDateToTable() {
 		listItem = (Vector<Tra>) traservice.getList();
 		model = new ClassTableModel().setTableTra(listItem, COLUMNS);
@@ -108,47 +108,51 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
-			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")) {
+			if (txtMaThuThu.getText().equals("") || txtMaSach.getText().equals("") || txtNgayTra.getDate() == null
+					|| txtMaSach.getText().equals("")) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
-			}else {
-			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()));
-				
-			 traservice.Insert(t);
-			 setDateToTable();
+			} else {
+				t = new Tra(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
+						covertDateToDateSql((Date) txtNgayTra.getDate()));
+
+				traservice.Insert(t);
+				setDateToTable();
 			}
 		} else if (e.getSource() == btInsert) {
-			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")) {
+			if (txtMaThuThu.getText().equals("") || txtMaSach.getText().equals("") || txtNgayTra.getDate() == null
+					|| txtMaSach.getText().equals("") ) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
-			}else {
-			 t = new Tra(txtMaThe.getText(),txtMaThuThu.getText(),txtMaSach.getText(),covertDateToDateSql((Date)txtNgayTra.getDate()),Integer.parseInt(txtSoSachTra.getText()));
-				
-			 traservice.Update(t);
-			 setDateToTable();
+			} else {
+				t = new Tra(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
+						covertDateToDateSql((Date) txtNgayTra.getDate()));
+
+				traservice.Update(t);
+				setDateToTable();
 			}
 
 		} else if (e.getSource() == btDelete) {
-		
-			if(txtMaThuThu.getText().equals("")||txtMaSach.getText().equals("")||txtNgayTra.getDate()==null||txtMaSach.getText().equals("")||txtSoSachTra.getText().equals("")) {
+
+			if (txtMaThuThu.getText().equals("") || txtMaSach.getText().equals("") || txtNgayTra.getDate() == null
+					|| txtMaSach.getText().equals("") ) {
 				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
 			}
-			
-			else if(trdao.tinhToan(txtMaThe.getText())==0)
-			{
-				
-			
-			String sql = "Delete from Tra where NgayTra=\'" + covertDateToDateSql(txtNgayTra.getDate()) + "\' and MaThe=\'"+txtMaThe.getText()+"\' and MaSach=\'"+txtMaSach.getText()+"\'";
-			try {
-				Connection conn = SQLConnect.getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql);
-				ps.executeUpdate();
-				setDateToTable();
-		
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-			}
-			else {
-				JOptionPane.showMessageDialog(pnView, "Người này vẫn đang thiếu thư viện "+trdao.tinhToan(txtMaThe.getText())+" cuốn");
+
+			else if (trdao.tinhToan(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) == 0) {
+
+				String sql = "Delete from Tra where NgayTra=\'" + covertDateToDateSql(txtNgayTra.getDate())
+						+ "\' and MaThe=\'" + txtMaThe.getText() + "\' and MaSach=\'" + txtMaSach.getText() + "\'";
+				try {
+					Connection conn = SQLConnect.getConnection();
+					PreparedStatement ps = conn.prepareStatement(sql);
+					ps.executeUpdate();
+					setDateToTable();
+
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(pnView, "Người này vẫn đang thiếu thư viện "
+						+ trdao.tinhToan(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) + " cuốn");
 			}
 
 		}
@@ -160,7 +164,6 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 		selectedRowIndex = table.convertRowIndexToModel(selectedRowIndex);
 		Tra t = (Tra) listItem.elementAt(selectedRowIndex);
 		txtNgayTra.setDate(t.getNgaytra());
-		txtSoSachTra.setText(String.valueOf(t.getSosachtra()));
 		txtMaThe.setText(t.getMathe());
 		txtMaThuThu.setText(t.getMathuthu());
 		txtMaSach.setText(t.getMasach());

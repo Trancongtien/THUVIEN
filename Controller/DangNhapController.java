@@ -1,7 +1,9 @@
 package Controller;
 
 import javax.swing.*;
-import Tien.MainFrame;
+
+import GUI.MainFrame;
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -18,7 +18,6 @@ public class TraDAOImpl implements TraDAO {
 			while (rs.next()) {
 				Tra t = new Tra();
 				t.setNgaytra(rs.getDate("NgayTra"));
-				t.setSosachtra(rs.getInt("SoSachTra"));
 				t.setMathe(rs.getString("MaThe"));
 				t.setMathuthu(rs.getString("MaThuThu"));
 				t.setMasach(rs.getString("MaSach"));
@@ -36,16 +35,15 @@ public class TraDAOImpl implements TraDAO {
 	public int Update(Tra t) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Update Tra set mathe=?,MaThuTHu=?,MaSach=?,Ngaytra=?,SOSACHTRA=? where MaThe=? and MaSach=? and MaThuThu=?";
+			String sql = "Update Tra set mathe=?,MaThuTHu=?,MaSach=?,Ngaytra=?where MaThe=? and MaSach=? and MaThuThu=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, t.getMathe());
 			ps.setString(2, t.getMathuthu());
 			ps.setString(3, t.getMasach());
 			ps.setDate(4, (Date) t.getNgaytra());
-			ps.setInt(5, t.getSosachtra());
-			ps.setString(6, t.getMathe());
-			ps.setString(7, t.getMasach());
-			ps.setString(8, t.getMathuthu());
+			ps.setString(5, t.getMathe());
+			ps.setString(6, t.getMasach());
+			ps.setString(7, t.getMathuthu());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -60,13 +58,12 @@ public class TraDAOImpl implements TraDAO {
 	public int Insert(Tra t) {
 		try {
 			Connection conn = SQLConnect.getConnection();
-			String sql = "Insert into Tra values(?,?,?,?,?)";
+			String sql = "Insert into Tra values(?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, t.getMathe());
 			ps.setString(2, t.getMathuthu());
 			ps.setString(3, t.getMasach());
 			ps.setDate(4, (Date) t.getNgaytra());
-			ps.setInt(5, t.getSosachtra());
 			ps.executeUpdate();
 			ps.close();
 			conn.close();
@@ -78,15 +75,17 @@ public class TraDAOImpl implements TraDAO {
 		return 0;
 	}
 
-	public int tinhToan(String t) {
+	public int tinhToan(String t, String t1,String t2) {
 		int result = 0;
 		try {
 
 			Connection conn = SQLConnect.getConnection();
-			String sql = "select dbo.tinhtoan(?) ";
+			String sql = "select dbo.tinhtoan(?,?,?) ";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			ps.setString(1, t);
+			ps.setString(2, t1);
+			ps.setString(3, t2);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 			result=(rs.getInt(""));

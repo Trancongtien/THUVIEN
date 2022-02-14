@@ -9,17 +9,15 @@ public class Muon implements Serializable {
 	private String mathuthu;
 	private String maSach;
 	private Date NgayMuon;
-	private int SoSachMuon;
 
 	public Muon() {
 	}
 
-	public Muon(String mathe, String mathuthu, String maSach, Date ngayMuon, int soSachMuon) {
+	public Muon(String mathe, String mathuthu, String maSach, Date ngayMuon) {
 		Mathe = mathe;
 		this.mathuthu = mathuthu;
 		this.maSach = maSach;
 		NgayMuon = ngayMuon;
-		SoSachMuon = soSachMuon;
 	}
 
 	public String getMathe() {
@@ -54,12 +52,8 @@ public class Muon implements Serializable {
 		NgayMuon = ngayMuon;
 	}
 
-	public int getSoSachMuon() {
-		return SoSachMuon;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-
-	public void setSoSachMuon(int soSachMuon) {
-		SoSachMuon = soSachMuon;
-	}
-
 }
+	

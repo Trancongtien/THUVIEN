@@ -11,6 +11,7 @@ import javax.swing.table.*;
 
 import com.toedter.calendar.JDateChooser;
 
+import dao.DocGiaDAOImpl;
 import dao.SQLConnect;
 import model.DocGia;
 
@@ -51,7 +52,7 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 		this.docgiaservice = new DocGiaServiceImpl();
 
 	}
-
+	private DocGiaDAOImpl docgiadao= new DocGiaDAOImpl();
 	private DocGia dg = null;
 	private Vector<DocGia> listItem;
 	private DefaultTableModel model;
@@ -107,7 +108,7 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
 						|| txtGioitinh.getText().equals("")) {
 					JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
-				} else {
+				} else if(docgiadao.kTra(txtMaDocGia.getText())==0) {
 
 					dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
 							covertDateToDateSql((Date) txtNgaySinh.getDate()),
@@ -115,6 +116,9 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 							txtMaloaidocgia.getText());
 					docgiaservice.Insert(dg);
 					setDateToTabel();
+				}
+				else {
+					JOptionPane.showMessageDialog(pnView, "Vui lòng nhập mã độc giả khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
 				}
 			}
 		});
@@ -143,9 +147,9 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
 						|| txtGioitinh.getText().equals("")) {
 					JOptionPane.showMessageDialog(pnView, "Vui lòng Chọn đầy đủ thông tin");
-				} else {
+				} else if(docgiadao.xoa(txtMaDocGia.getText())==0) {
 
-				}
+				
 				String sql = "Delete from DocGia where MaDocGia=\'" + txtMaDocGia.getText() + "\'";
 				try {
 					Connection conn = SQLConnect.getConnection();
@@ -155,6 +159,9 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
+			}else {
+				JOptionPane.showMessageDialog(null, "Vui lòng xóa ở phần Mượn,Trả và Thẻ");
+			}
 			}
 		});
 

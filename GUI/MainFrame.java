@@ -1,4 +1,4 @@
-package Tien;
+package GUI;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -100,7 +100,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				DangNhapDia dialog= new DangNhapDia(null, true);
-				dialog.setTitle("Đăng Nhập Hệ Thống");
+				dialog.setTitle("�?ăng Nhập Hệ Thống");
 				dialog.setResizable(false);
 				dialog.setLocationRelativeTo(null);
 				dialog.setVisible(true);
@@ -108,11 +108,11 @@ public class MainFrame extends JFrame {
 		});
 		btAbout = new javax.swing.JButton();
 		btAbout.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		btAbout.setText("Điều Khoản");
+		btAbout.setText("�?i�?u Khoản");
 		btAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DieuKhoan dk= new DieuKhoan(null,true);
-				dk.setTitle("Điều khoản người dùng");
+				dk.setTitle("�?i�?u khoản ngư�?i dùng");
 				dk.setResizable(false);
 				dk.setLocationRelativeTo(null);
 				dk.setVisible(true);

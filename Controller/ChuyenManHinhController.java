@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.swing.*;
 
-import Tien.*;
+import GUI.*;
 import bean.DanhMucBean;
 
 public class ChuyenManHinhController extends JFrame {
@@ -36,7 +36,7 @@ public class ChuyenManHinhController extends JFrame {
 	public void setEvent(List<DanhMucBean> listDanhMuc) {
 		this.listItem = listDanhMuc;
 		for (DanhMucBean item : listDanhMuc) {
-			item.getJlb().addMouseListener(new LabelEvent(item.getKind(), item.getJpn(), item.getJlb()));
+			item.getLb().addMouseListener(new LabelEvent(item.getKind(), item.getPn(), item.getLb()));
 		}
 	}
 
@@ -127,12 +127,12 @@ public class ChuyenManHinhController extends JFrame {
 	
 		for (DanhMucBean item : listItem) {
 			if (item.getKind().equalsIgnoreCase(kind)) {
-				item.getJpn().setBackground(new Color(96, 100, 191));
-				item.getJlb().setBackground(new Color(96, 100, 191));
+				item.getPn().setBackground(new Color(96, 100, 191));
+				item.getLb().setBackground(new Color(96, 100, 191));
 				
 			} else {
-				item.getJpn().setBackground(new Color(0, 250, 0));
-				item.getJlb().setBackground(new Color(0, 250, 0));
+				item.getPn().setBackground(new Color(0, 250, 0));
+				item.getLb().setBackground(new Color(0, 250, 0));
 			}
 		}
 	}
