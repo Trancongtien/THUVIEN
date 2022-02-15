@@ -100,10 +100,11 @@ public void setDateToTable() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(txtMaThuThu.getText().equals("")||txtHodem.getText().equals("")||txtTen.getText().equals("")||txtDiaChi.getText().equals("")||txtGioiTinh.getText().equals("")||txtMaTK.getText().equals("")) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
+				JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
 			}else {
 			tt = new ThuThu(txtMaThuThu.getText(), txtHodem.getText(), txtTen.getText(), txtDiaChi.getText(), txtGioiTinh.getText().equals("Nam")?true:false, txtMaTK.getText());
 			thuThuService.Insert(tt);
+			JOptionPane.showMessageDialog(null, "Thêm Thành Công");
 			setDateToTable();
 		}
 		}
@@ -113,10 +114,11 @@ public void setDateToTable() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(txtMaThuThu.getText().equals("")||txtHodem.getText().equals("")||txtTen.getText().equals("")||txtDiaChi.getText().equals("")||txtGioiTinh.getText().equals("")||txtMaTK.getText().equals("")) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 			}else {
 			tt = new ThuThu(txtMaThuThu.getText(), txtHodem.getText(), txtTen.getText(), txtDiaChi.getText(), txtGioiTinh.getText().equals("Nam")?true:false, txtMaTK.getText());
 			thuThuService.Update(tt);
+			JOptionPane.showMessageDialog(null, "Cập Nhật Thành Công");
 			setDateToTable();			
 		}
 		}
@@ -126,13 +128,14 @@ public void setDateToTable() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(txtMaThuThu.getText().equals("")||txtHodem.getText().equals("")||txtTen.getText().equals("")||txtDiaChi.getText().equals("")||txtGioiTinh.getText().equals("")||txtMaTK.getText().equals("")) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 			}else {
 			String sql="Delete from ThuThu where MaThuThu=\'"+txtMaThuThu.getText()+"\'";
 		try {
 			Connection conn= SQLConnect.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
+			JOptionPane.showMessageDialog(null, "Xóa Thành Công");
 			setDateToTable();
 		} catch (Exception e2) {
 			e2.printStackTrace();

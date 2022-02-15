@@ -29,7 +29,7 @@ public class QuanLyThe extends JPanel {
     private javax.swing.JTextField txtMaDocGia;
     private javax.swing.JTextField txtFind;
     private javax.swing.JTextField txtMaThe;
-	    private JLabel lblNewLabel_1;
+	    private JLabel lbFind;
 	public QuanLyThe() {
 
 	     pnView = new javax.swing.JPanel();
@@ -89,8 +89,8 @@ public class QuanLyThe extends JPanel {
 
 	        btDelete.setText("Xóa");
 	        
-	        lblNewLabel_1 = new JLabel("Nhập ký tự muốn tìm :");
-	        lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+	        lbFind = new JLabel("Nhập ký tự muốn tìm :");
+	        lbFind.setFont(new Font("Times New Roman", Font.BOLD, 14));
 	        
 	        
 	        JDateChooser txtNgayBatDau =  new com.toedter.calendar.JDateChooser();
@@ -111,7 +111,7 @@ public class QuanLyThe extends JPanel {
 	        					.addGroup(gl_pnView.createParallelGroup(Alignment.TRAILING)
 	        						.addGroup(gl_pnView.createSequentialGroup()
 	        							.addGap(13)
-	        							.addComponent(lblNewLabel_1, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+	        							.addComponent(lbFind, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
 	        							.addGap(40)
 	        							.addComponent(txtFind, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
 	        						.addGroup(gl_pnView.createSequentialGroup()
@@ -149,7 +149,7 @@ public class QuanLyThe extends JPanel {
 	        			.addContainerGap()
 	        			.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
 	        				.addComponent(txtFind, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-	        				.addComponent(lblNewLabel_1))
+	        				.addComponent(lbFind))
 	        			.addGap(18)
 	        			.addGroup(gl_pnView.createParallelGroup(Alignment.BASELINE)
 	        				.addComponent(lbMaThe)

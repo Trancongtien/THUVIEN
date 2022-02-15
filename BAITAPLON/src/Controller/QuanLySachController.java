@@ -124,46 +124,65 @@ public class QuanLySachController extends JFrame implements ActionListener, Mous
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btAdd) {
-			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
-				JOptionPane.showMessageDialog(jpnView, "Vui lòng nhập đầy đủ thông tin");
+			if (txtMaSach.getText().equals("") || txtTenSach.getText().equals("") || txtTomTat.getText().equals("")
+					|| txtSoTrang.getText().equals("") || txtDonGia.getText().equals("")
+					|| txtNamXB.getText().equals("") || txtTacGia.getText().equals("")
+					|| txtTheLoai.getText().equals("") || txtNhaXuatBan.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
 
-			}else if(kTra(txtMaSach.getText())==0) {
-			s= new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(), Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()), Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(), txtNhaXuatBan.getText());
-			sachservice.Insert(s);
-			setDateToTabel();
-			}else {
-				JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sách khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
+			} else if (kTra(txtMaSach.getText()) == 0) {
+				s = new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(),
+						Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()),
+						Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(),
+						txtNhaXuatBan.getText());
+				sachservice.Insert(s);
+				JOptionPane.showMessageDialog(null, "Thêm Thành Công");
+				setDateToTabel();
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Vui lòng nhập mã sách khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
 			}
 		} else if (e.getSource() == brInsert) {
-			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
-				JOptionPane.showMessageDialog(jpnView, "Vui lòng chọn đầy đủ thông tin");
+			if (txtMaSach.getText().equals("") || txtTenSach.getText().equals("") || txtTomTat.getText().equals("")
+					|| txtSoTrang.getText().equals("") || txtDonGia.getText().equals("")
+					|| txtNamXB.getText().equals("") || txtTacGia.getText().equals("")
+					|| txtTheLoai.getText().equals("") || txtNhaXuatBan.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 
-			}else {
-			s= new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(), Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()), Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(), txtNhaXuatBan.getText());
-			sachservice.Update(s);
-			setDateToTabel();
+			} else {
+				s = new Sach(txtMaSach.getText(), txtTenSach.getText(), txtTomTat.getText(),
+						Integer.parseInt(txtSoTrang.getText()), Integer.parseInt(txtDonGia.getText()),
+						Integer.parseInt(txtNamXB.getText()), txtTacGia.getText(), txtTheLoai.getText(),
+						txtNhaXuatBan.getText());
+				sachservice.Update(s);
+				JOptionPane.showMessageDialog(null, "Cập Nhật Thành Công");
+				setDateToTabel();
 			}
 		} else if (e.getSource() == btDelete) {
-			if(txtMaSach.getText().equals("")||txtTenSach.getText().equals("")||txtTomTat.getText().equals("")||txtSoTrang.getText().equals("")||txtDonGia.getText().equals("")||txtNamXB.getText().equals("")||txtTacGia.getText().equals("")||txtTheLoai.getText().equals("")||txtNhaXuatBan.getText().equals("")) {
-				JOptionPane.showMessageDialog(jpnView, "Vui lòng chọn đầy đủ thông tin");
+			if (txtMaSach.getText().equals("") || txtTenSach.getText().equals("") || txtTomTat.getText().equals("")
+					|| txtSoTrang.getText().equals("") || txtDonGia.getText().equals("")
+					|| txtNamXB.getText().equals("") || txtTacGia.getText().equals("")
+					|| txtTheLoai.getText().equals("") || txtNhaXuatBan.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 
-			}else if(xoa(txtMaSach.getText())==0) {
-			String sql = "Delete from Sach where MaSach=\'" + txtMaSach.getText() + "\'";
-			try {
-				Connection conn = SQLConnect.getConnection();
-				PreparedStatement prs = conn.prepareStatement(sql);
-				prs.executeUpdate();
-				setDateToTabel();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			} else if (xoa(txtMaSach.getText()) == 0) {
+				String sql = "Delete from Sach where MaSach=\'" + txtMaSach.getText() + "\'";
+				try {
+					Connection conn = SQLConnect.getConnection();
+					PreparedStatement prs = conn.prepareStatement(sql);
+					prs.executeUpdate();
+					JOptionPane.showMessageDialog(null, "Xóa Thành Công");
+					setDateToTabel();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Vui lòng xóa ở phần Mượn và Trả trước");
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Vui lòng xóa ở phần Mượn và Trả trước");
-		}
-			
+
 		}
 	}
-	
+
 	public java.sql.Date covertDateToDateSql(Date d) {
 		return new java.sql.Date(d.getTime());
 	}

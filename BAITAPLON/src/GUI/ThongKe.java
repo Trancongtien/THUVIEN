@@ -20,6 +20,7 @@ public class ThongKe extends JPanel {
 
 	public ThongKe() {
 		pnQuery = new javax.swing.JPanel();
+		pnQuery.setBackground(UIManager.getColor("Button.shadow"));
 		btFind = new javax.swing.JButton();
 		btFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

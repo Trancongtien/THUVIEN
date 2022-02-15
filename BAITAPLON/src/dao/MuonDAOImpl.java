@@ -72,18 +72,20 @@ public class MuonDAOImpl implements MuonDAO {
 		return 0;
 	}
 
-	public int tinhToan(String t) {
+	public int tinhToan(String t, String t1, String t2) {
 		int result = 0;
 		try {
 
 			Connection conn = SQLConnect.getConnection();
-			String sql = "select dbo.tinhtoan(?) ";
+			String sql = "select dbo.tinhtoan(?,?,?) ";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			ps.setString(1, t);
+			ps.setString(2, t1);
+			ps.setString(3, t2);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-			result=(rs.getInt(""));
+			while (rs.next()) {
+				result = (rs.getInt(""));
 			}
 			ps.close();
 			conn.close();

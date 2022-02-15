@@ -30,9 +30,9 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 	private TraService traservice = null;
 	private TableRowSorter<TableModel> rowSorter = null;
 
-	public QuanLyTraController(JPanel pnView, JTextField txtSearch, JTextField txtMaThe,
-			JTextField txtMaThuThu, JTextField txtMaSach, JButton btAdd, JButton btDelete, JButton btInsert,
-			JDateChooser txtNgayTra) throws HeadlessException {
+	public QuanLyTraController(JPanel pnView, JTextField txtSearch, JTextField txtMaThe, JTextField txtMaThuThu,
+			JTextField txtMaSach, JButton btAdd, JButton btDelete, JButton btInsert, JDateChooser txtNgayTra)
+			throws HeadlessException {
 		this.pnView = pnView;
 		this.txtSearch = txtSearch;
 		this.txtMaThe = txtMaThe;
@@ -110,31 +110,34 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 		if (e.getSource() == btAdd) {
 			if (txtMaThuThu.getText().equals("") || txtMaSach.getText().equals("") || txtNgayTra.getDate() == null
 					|| txtMaSach.getText().equals("")) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
-			} else {
+				JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+			} else if (ktrTra(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) == 0) {
 				t = new Tra(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
 						covertDateToDateSql((Date) txtNgayTra.getDate()));
-
 				traservice.Insert(t);
+				JOptionPane.showMessageDialog(null, "Thêm Thành Công");
 				setDateToTable();
+			} else {
+				JOptionPane.showMessageDialog(null, "Sách này đã được trả! Vui xóa để thêm lại");
 			}
 		} else if (e.getSource() == btInsert) {
 			if (txtMaThuThu.getText().equals("") || txtMaSach.getText().equals("") || txtNgayTra.getDate() == null
-					|| txtMaSach.getText().equals("") ) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+					|| txtMaSach.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 			} else {
 				t = new Tra(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
 						covertDateToDateSql((Date) txtNgayTra.getDate()));
 
 				traservice.Update(t);
+				JOptionPane.showMessageDialog(null, "Cập Nhật Thành Công");
 				setDateToTable();
 			}
 
 		} else if (e.getSource() == btDelete) {
 
 			if (txtMaThuThu.getText().equals("") || txtMaSach.getText().equals("") || txtNgayTra.getDate() == null
-					|| txtMaSach.getText().equals("") ) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+					|| txtMaSach.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 			}
 
 			else if (trdao.tinhToan(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) == 0) {
@@ -145,13 +148,14 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 					Connection conn = SQLConnect.getConnection();
 					PreparedStatement ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
+					JOptionPane.showMessageDialog(null, "Xóa Thành Công");
 					setDateToTable();
 
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
 			} else {
-				JOptionPane.showMessageDialog(pnView, "Người này vẫn đang thiếu thư viện "
+				JOptionPane.showMessageDialog(null, "Người này vẫn đang thiếu thư viện "
 						+ trdao.tinhToan(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) + " cuốn");
 			}
 
@@ -196,5 +200,28 @@ public class QuanLyTraController extends JFrame implements MouseListener, Action
 
 	public java.sql.Date covertDateToDateSql(Date d) {
 		return new java.sql.Date(d.getTime());
+	}
+
+	public int ktrTra(String t, String t1, String t2) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.ktrtra(?,?,?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ps.setString(2, t1);
+			ps.setString(3, t2);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				result = (rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

@@ -52,7 +52,8 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 		this.docgiaservice = new DocGiaServiceImpl();
 
 	}
-	private DocGiaDAOImpl docgiadao= new DocGiaDAOImpl();
+
+	private DocGiaDAOImpl docgiadao = new DocGiaDAOImpl();
 	private DocGia dg = null;
 	private Vector<DocGia> listItem;
 	private DefaultTableModel model;
@@ -107,18 +108,19 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 						|| txtNgaySinh.getDate() == null || txtDiaChi.getText().equals("")
 						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
 						|| txtGioitinh.getText().equals("")) {
-					JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ thông tin");
-				} else if(docgiadao.kTra(txtMaDocGia.getText())==0) {
+					JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+				} else if (docgiadao.kTra(txtMaDocGia.getText()) == 0) {
 
 					dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
 							covertDateToDateSql((Date) txtNgaySinh.getDate()),
 							txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
 							txtMaloaidocgia.getText());
 					docgiaservice.Insert(dg);
+					JOptionPane.showMessageDialog(null, "Thêm Thành Công");
 					setDateToTabel();
-				}
-				else {
-					JOptionPane.showMessageDialog(pnView, "Vui lòng nhập mã độc giả khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Vui lòng nhập mã độc giả khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
 				}
 			}
 		});
@@ -128,7 +130,7 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 						|| txtNgaySinh.getDate() == null || txtDiaChi.getText().equals("")
 						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
 						|| txtGioitinh.getText().equals("")) {
-					JOptionPane.showMessageDialog(pnView, "Vui lòng Chọn đầy đủ thông tin");
+					JOptionPane.showMessageDialog(null, "Vui lòng Chọn đầy đủ thông tin");
 				} else {
 
 					dg = new DocGia(txtMaDocGia.getText(), txtHodem.getText(), txtTen.getText(),
@@ -136,6 +138,7 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 							txtGioitinh.getText().equals("Nam") ? true : false, txtSDT.getText(), txtDiaChi.getText(),
 							txtMaloaidocgia.getText());
 					docgiaservice.Update(dg);
+					JOptionPane.showMessageDialog(null, "Cập Nhật Thành Công");
 					setDateToTabel();
 				}
 			}
@@ -147,21 +150,21 @@ public class QuanLyDocGiaController implements ActionListener, MouseListener {
 						|| txtMaloaidocgia.getText().equals("") || txtSDT.getText().equals("")
 						|| txtGioitinh.getText().equals("")) {
 					JOptionPane.showMessageDialog(pnView, "Vui lòng Chọn đầy đủ thông tin");
-				} else if(docgiadao.xoa(txtMaDocGia.getText())==0) {
+				} else if (docgiadao.xoa(txtMaDocGia.getText()) == 0) {
 
-				
-				String sql = "Delete from DocGia where MaDocGia=\'" + txtMaDocGia.getText() + "\'";
-				try {
-					Connection conn = SQLConnect.getConnection();
-					PreparedStatement ps = conn.prepareStatement(sql);
-					ps.executeUpdate();
-					setDateToTabel();
-				} catch (Exception e2) {
-					e2.printStackTrace();
+					String sql = "Delete from DocGia where MaDocGia=\'" + txtMaDocGia.getText() + "\'";
+					try {
+						Connection conn = SQLConnect.getConnection();
+						PreparedStatement ps = conn.prepareStatement(sql);
+						ps.executeUpdate();
+						JOptionPane.showMessageDialog(null, "Xóa Thành Công");
+						setDateToTabel();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Vui lòng xóa ở phần Mượn,Trả và Thẻ");
 				}
-			}else {
-				JOptionPane.showMessageDialog(null, "Vui lòng xóa ở phần Mượn,Trả và Thẻ");
-			}
 			}
 		});
 

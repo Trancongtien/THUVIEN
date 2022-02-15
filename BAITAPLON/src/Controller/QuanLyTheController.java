@@ -141,22 +141,23 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 		if (e.getSource() == btAdd) {
 			if (txtMathe.getText().equals("") || txtNgayBatDau.getDate() == null || txtNgayKetThuc.getDate() == null
 					|| txtGhiChu.getText().equals("") || txtMaDocGia.getText().equals("")) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng Nhập đầy đủ thông tin");
+				JOptionPane.showMessageDialog(null, "Vui lòng Nhập đầy đủ thông tin");
 
 			} else if (kTra(txtMathe.getText()) == 0) {
 				ttt = new TheThuVien(txtMathe.getText(), covertDateToDateSql((Date) txtNgayBatDau.getDate()),
 						covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(),
 						txtMaDocGia.getText());
 				theservice.Insert(ttt);
+				JOptionPane.showMessageDialog(null, "Thêm Thành Công");
 				setDateToTable();
 			} else {
-				JOptionPane.showMessageDialog(pnView,
+				JOptionPane.showMessageDialog(null,
 						"Vui lòng nhập mã thẻ khác! Bạn hãy đọc lại điều khoản! Xin cảm ơn!");
 			}
 		} else if (e.getSource() == btDelete) {
 			if (txtMathe.getText().equals("") || txtNgayBatDau.getDate() == null || txtNgayKetThuc.getDate() == null
 					|| txtGhiChu.getText().equals("") || txtMaDocGia.getText().equals("")) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 
 			} else if (xoa(txtMathe.getText()) == 0) {
 				String sql = "Delete from TheThuVien where MaThe=\'" + txtMathe.getText() + "\'";
@@ -164,6 +165,7 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 					Connection conn = SQLConnect.getConnection();
 					PreparedStatement ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
+					JOptionPane.showMessageDialog(null, "Xóa Thành Công");
 					setDateToTable();
 				} catch (Exception e2) {
 
@@ -175,13 +177,14 @@ public class QuanLyTheController implements ActionListener, MouseListener {
 		} else if (e.getSource() == btInsert) {
 			if (txtMathe.getText().equals("") || txtNgayBatDau.getDate() == null || txtNgayKetThuc.getDate() == null
 					|| txtGhiChu.getText().equals("") || txtMaDocGia.getText().equals("")) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ thông tin");
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin");
 
 			} else {
 				ttt = new TheThuVien(txtMathe.getText(), covertDateToDateSql((Date) txtNgayBatDau.getDate()),
 						covertDateToDateSql((Date) txtNgayKetThuc.getDate()), txtGhiChu.getText(),
 						txtMaDocGia.getText());
 				theservice.Update(ttt);
+				JOptionPane.showMessageDialog(null, "Cập Nhật Thành Công");
 				setDateToTable();
 			}
 		}

@@ -21,13 +21,12 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 	private JTextField txtSearch, txtMaThe, txtMaThuThu, txtMaSach;
 	private JButton btAdd, btDelete, btInsert;
 	private JDateChooser txtNgayMuon;
-	private final String[] COLUMNS = { "STT", "Mã Thẻ", "Mã Thủ Thư", "Mã sách", "Ngày Mượn"};
+	private final String[] COLUMNS = { "STT", "Mã Thẻ", "Mã Thủ Thư", "Mã sách", "Ngày Mượn" };
 	private TableRowSorter<TableModel> rowSorter = null;
 	private MuonService muonservice = null;
 
 	public QuanLyMuonController(JPanel pnView, JTextField txtSearch, JTextField txtMaThe, JTextField txtMaThuThu,
-			JTextField txtMaSach, JButton btAdd, JButton btDelete, JButton btInsert,
-			JDateChooser txtNgayMuon) {
+			JTextField txtMaSach, JButton btAdd, JButton btDelete, JButton btInsert, JDateChooser txtNgayMuon) {
 		this.pnView = pnView;
 		this.txtSearch = txtSearch;
 		this.txtMaThe = txtMaThe;
@@ -49,7 +48,8 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 	private Vector<Muon> listItem;
 	private DefaultTableModel model;
 	private JTable table;
-	private MuonDAOImpl muondao= new MuonDAOImpl();
+	private MuonDAOImpl muondao = new MuonDAOImpl();
+
 	public void setDateToTable() {
 		listItem = (Vector<Muon>) muonservice.getList();
 		model = new ClassTableModel().setTableMuon(listItem, COLUMNS);
@@ -145,41 +145,48 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 
 		if (e.getSource() == btAdd) {
 			if (txtMaThe.getText().equals("") || txtMaSach.getText().equals("") || txtMaThuThu.getText().equals("")
-					|| txtNgayMuon.getDate() == null ) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng nhập đầy đủ giá trị");
-			} else {
-				m = new Muon(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(), covertDateToDateSql(txtNgayMuon.getDate()));
+					|| txtNgayMuon.getDate() == null) {
+				JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ giá trị");
+			} else if (ktrXoa(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) == 0) {
+				m = new Muon(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
+						covertDateToDateSql(txtNgayMuon.getDate()));
 				muonservice.Insert(m);
+				JOptionPane.showMessageDialog(null, "Thêm Thành Công");
 				setDateToTable();
+			} else {
+				JOptionPane.showMessageDialog(null, "Vui lòng xóa dữ liệu đã có");
 			}
 		} else if (e.getSource() == btDelete) {
 			if (txtMaThe.getText().equals("") || txtMaSach.getText().equals("") || txtMaThuThu.getText().equals("")
-					|| txtNgayMuon.getDate() == null ) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ giá trị");
-			} else if(muondao.tinhToan(txtMaThe.getText())==0) {
+					|| txtNgayMuon.getDate() == null) {
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ giá trị");
+			} else if (muondao.tinhToan(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) == 0) {
 				String sql = "Delete from Muon where MaThe=\'" + txtMaThe.getText() + "\' and NgayMuon=\'"
-						+ covertDateToDateSql(txtNgayMuon.getDate()) + "\' and MaSach=\'"+ txtMaSach.getText()+"\'";
+						+ covertDateToDateSql(txtNgayMuon.getDate()) + "\' and MaSach=\'" + txtMaSach.getText() + "\'";
 				try {
 					Connection conn = SQLConnect.getConnection();
 					PreparedStatement ps = conn.prepareStatement(sql);
 					ps.executeUpdate();
+					JOptionPane.showMessageDialog(null, "Xóa Thành Công");
 					setDateToTable();
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-			}else {
-				JOptionPane.showMessageDialog(pnView, "Người này vẫn đang thiếu thư viện "+muondao.tinhToan(txtMaThe.getText())+" cuốn");
-				
+			} else {
+				JOptionPane.showMessageDialog(null, "Người này vẫn đang thiếu thư viện "
+						+ muondao.tinhToan(txtMaThe.getText(), txtMaSach.getText(), txtMaThuThu.getText()) + " cuốn");
+
 			}
 
 		} else if (e.getSource() == btInsert) {
 			if (txtMaThe.getText().equals("") || txtMaSach.getText().equals("") || txtMaThuThu.getText().equals("")
 					|| txtNgayMuon.getDate() == null) {
-				JOptionPane.showMessageDialog(pnView, "Vui lòng chọn đầy đủ giá trị");
+				JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ giá trị");
 			} else {
 				m = new Muon(txtMaThe.getText(), txtMaThuThu.getText(), txtMaSach.getText(),
 						covertDateToDateSql((Date) txtNgayMuon.getDate()));
 				muonservice.Update(m);
+				JOptionPane.showMessageDialog(null, "Cập Nhật Thành Công");
 				setDateToTable();
 			}
 		}
@@ -189,4 +196,26 @@ public class QuanLyMuonController implements ActionListener, MouseListener {
 		return new java.sql.Date(d.getTime());
 	}
 
+	public int ktrXoa(String t, String t1, String t2) {
+		int result = 0;
+		try {
+
+			Connection conn = SQLConnect.getConnection();
+			String sql = "select dbo.ktrmuon(?,?,?) ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setString(1, t);
+			ps.setString(2, t1);
+			ps.setString(3, t2);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				result = (rs.getInt(""));
+			}
+			ps.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

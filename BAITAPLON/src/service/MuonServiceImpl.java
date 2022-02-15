@@ -6,15 +6,18 @@ import dao.MuonDAO;
 import dao.MuonDAOImpl;
 import model.Muon;
 
-public class MuonServiceImpl  implements MuonService{
-private MuonDAO muonDao=null;
+public class MuonServiceImpl implements MuonService {
+	private MuonDAO muonDao = null;
+
 	@Override
 	public List<Muon> getList() {
 		return muonDao.getList();
 	}
-public MuonServiceImpl() {
-	this.muonDao=new MuonDAOImpl();
-}
+
+	public MuonServiceImpl() {
+		this.muonDao = new MuonDAOImpl();
+	}
+
 	@Override
 	public int Update(Muon m) {
 		return muonDao.Update(m);
